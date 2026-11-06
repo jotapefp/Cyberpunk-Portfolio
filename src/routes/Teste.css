@@ -1,0 +1,130 @@
+html {
+  scroll-behavior: smooth;
+}
+
+:root {
+  --bg: #0a0a0f;
+  --yellow: #fcee0a;
+  --cyan: #00f0ff;
+  --red: #ff003c;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: #e6e6e6;
+  font-family: "Rajdhani", sans-serif;
+}
+
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: rgba(10, 10, 15, 0.9);
+  border-bottom: 2px solid var(--yellow);
+}
+
+.navbar ul {
+  display: flex;
+  gap: 1rem;
+  list-style: none;
+  margin: 0;
+  padding: 1rem;
+  overflow-x: auto;
+}
+
+.navbar a {
+  color: var(--yellow);
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  white-space: nowrap;
+}
+
+.navbar a:hover {
+  color: var(--cyan);
+  text-shadow: 0 0 8px var(--cyan);
+}
+
+.section {
+  min-height: 100vh;
+  padding: 2rem 1rem;
+  scroll-margin-top: 70px;
+}
+
+.card {
+  border: 1px solid var(--cyan);
+  clip-path: polygon(0 0, 95% 0, 100% 15%, 100% 100%, 5% 100%, 0 85%);
+  padding: 1.5rem;
+}
+
+.intro-gate {
+  position: absolute;
+  inset: 0;
+  background: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.intro-enter {
+  background: transparent;
+  color: var(--yellow);
+  border: 2px solid var(--yellow);
+  padding: 1rem 2rem;
+  font-size: 1.2rem;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.intro-enter:hover {
+  color: var(--cyan);
+  border-color: var(--cyan);
+  box-shadow: 0 0 16px var(--cyan);
+}
+
+.intro {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: #000;
+  transition: opacity 1.2s ease;
+}
+
+.intro-leaving {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.intro-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.intro-stage {
+  position: absolute;
+  inset: 0;
+  background: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 1s ease; /* mesmo tempo do setTimeout de 1000ms */
+  pointer-events: none;
+}
+
+.intro-stage.visible {
+  opacity: 1;
+}
+
+.intro-arasaka {
+  height: 100%;
+  width: auto;
+  max-width: 100%;
+  object-fit: contain; /* mantém a proporção, sem cortar */
+}

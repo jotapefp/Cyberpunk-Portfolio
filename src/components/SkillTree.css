@@ -1,0 +1,188 @@
+.skill-tree-section {
+  --tree-line: #8e2432;
+  --tree-fill-top: #3a1720;
+  --tree-fill-bottom: #240f18;
+  --tree-cyan: #5ee6e8;
+  --tree-tag: #b8323f;
+  /* hexágono achatado, com as laterais verticais */
+  --tree-shape: polygon(
+    22% 0,
+    78% 0,
+    100% 38%,
+    100% 62%,
+    78% 100%,
+    22% 100%,
+    0 62%,
+    0 38%
+  );
+
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 0.75rem;
+  background: linear-gradient(180deg, #2b0d13 0%, #120a12 45%, #060a12 100%);
+  font-family: "Rajdhani", sans-serif;
+}
+
+/* ---------- container: mantém a proporção da imagem de referência ---------- */
+.skill-tree {
+  position: relative;
+  width: min(100%, 760px);
+  aspect-ratio: 845 / 849;
+  container-type: inline-size; /* habilita as unidades cqw nos filhos */
+}
+
+/* ---------- circuitos + losango central (SVG) ---------- */
+.tree-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.tree-traces {
+  stroke: var(--tree-line);
+  stroke-width: 1.4;
+  fill: none;
+  opacity: 0.85;
+}
+
+.tree-core-half {
+  fill: #181a36;
+  stroke: #2c3068;
+  stroke-width: 1.5;
+}
+
+/* ---------- painéis ---------- */
+.tree-node {
+  position: absolute;
+  box-sizing: border-box; /* corrige a sobreposição */
+  width: 30.4%;
+  height: 19.4%;
+  isolation: isolate;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(0.2rem, 1.1cqw, 0.5rem);
+  padding-inline: 2.8cqw;
+  text-align: center;
+  text-decoration: none;
+  color: var(--tree-cyan);
+  transition:
+    filter 0.2s,
+    color 0.2s;
+}
+
+/* ::before = borda, ::after = preenchimento (o clip-path corta borda normal) */
+.tree-node::before,
+.tree-node::after {
+  content: "";
+  position: absolute;
+  clip-path: var(--tree-shape);
+  z-index: -1;
+}
+
+.tree-node::before {
+  inset: 0;
+  background: var(--tree-line);
+  transition: background 0.2s;
+}
+
+.tree-node::after {
+  inset: 1px;
+  background: linear-gradient(
+    180deg,
+    var(--tree-fill-top),
+    var(--tree-fill-bottom)
+  );
+}
+
+.tree-node:hover,
+.tree-node:focus-visible {
+  color: #fff;
+  outline: none;
+  filter: drop-shadow(0 0 10px rgba(94, 230, 232, 0.45));
+}
+
+.tree-node:hover::before,
+.tree-node:focus-visible::before {
+  background: var(--tree-cyan);
+}
+
+.tree-node-tag {
+  position: absolute;
+  top: -0.85em;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: clamp(0.42rem, 1.2cqw, 0.62rem);
+  letter-spacing: 0.08em;
+  color: var(--tree-tag);
+  white-space: nowrap;
+}
+
+.tree-node-title {
+  font-size: clamp(0.62rem, 2.15cqw, 1.2rem);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  line-height: 1.1;
+  text-wrap: balance;
+}
+
+.tree-node-icon {
+  width: clamp(1.1rem, 4.2cqw, 2.4rem);
+  height: clamp(1.1rem, 4.2cqw, 2.4rem);
+}
+
+/* posições (em % da imagem de referência) */
+.tree-node--top {
+  left: 34.7%;
+  top: 6.5%;
+}
+.tree-node--top-right {
+  left: 59.2%;
+  top: 19.2%;
+}
+.tree-node--bottom-right {
+  left: 59.2%;
+  top: 60.7%;
+}
+.tree-node--bottom {
+  left: 34.7%;
+  top: 73.6%;
+}
+.tree-node--bottom-left {
+  left: 10.4%;
+  top: 60.7%;
+}
+.tree-node--top-left {
+  left: 10.4%;
+  top: 19.2%;
+}
+
+/* ---------- textos do centro ---------- */
+.tree-core-tag {
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 0.25em 1.6em;
+  background: #20244a;
+  clip-path: polygon(12% 0, 88% 0, 100% 50%, 88% 100%, 12% 100%, 0 50%);
+  color: var(--tree-cyan);
+  letter-spacing: 0.12em;
+  white-space: nowrap;
+  font-size: clamp(0.5rem, 1.7cqw, 0.95rem);
+}
+
+.tree-core-tag--top {
+  top: 43%;
+  font-size: clamp(0.8rem, 2.8cqw, 1.5rem);
+}
+
+.tree-core-tag--bottom {
+  top: 59.5%;
+}
