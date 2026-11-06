@@ -31,7 +31,7 @@ type TreeNode = {
 const nodes: TreeNode[] = [
   {
     label: "Sobre mim",
-    to: "/sobre-mim",
+    to: "/AboutMe",
     Icon: User,
     tag: "AR7F1 01A1T1",
     pos: "top",
