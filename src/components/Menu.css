@@ -30,8 +30,12 @@
   z-index: 0;
   background: rgba(0, 0, 0, 0.12);
 }
-.yh-line--a { top: 32%; }
-.yh-line--b { top: 67.8%; }
+.yh-line--a {
+  top: 32%;
+}
+.yh-line--b {
+  top: 67.8%;
+}
 
 .yh-frame {
   position: absolute;
@@ -43,13 +47,22 @@
 
 .yh-figure {
   position: absolute;
-  z-index: 2;
+  z-index: 0;
   bottom: 0;
-  right: -6%;
-  height: min(52%, 100vw);
+  right: 0;
+  height: min(55%, 100vw);
   width: auto;
   pointer-events: none;
   user-select: none;
+}
+
+.yh-main {
+  position: relative;
+}
+.yh-left,
+.yh-right {
+  position: relative;
+  z-index: 1;
 }
 
 .yh-ui {
@@ -209,7 +222,9 @@
   text-transform: uppercase;
   text-decoration: none;
   clip-path: polygon(0 0, 93% 0, 100% 30%, 100% 100%, 0 100%);
-  transition: background 0.15s, color 0.15s;
+  transition:
+    background 0.15s,
+    color 0.15s;
 }
 
 .yh-cta:hover,
@@ -260,11 +275,17 @@
   background: var(--yh-yellow);
 }
 
-.yh-stack li:first-child {
-  color: var(--yh-yellow);
+.yh-stack li {
+  transition: color 0.15s;
+}
+.yh-stack li::after {
+  transition: background 0.15s;
 }
 
-.yh-stack li:first-child::after {
+.yh-stack li:hover {
+  color: var(--yh-yellow);
+}
+.yh-stack li:hover::after {
   background: var(--yh-ink);
 }
 
@@ -294,14 +315,14 @@
 @media (min-width: 900px) {
   .yh-frame,
   .yh-ui {
-    inset: 5.5% 6.1%;
+    inset: clamp(12px, 2.2vh, 24px) clamp(12px, 2vw, 32px);
   }
 
   .yh-figure {
     left: 51%;
     right: auto;
     transform: translateX(-50%);
-    height: min(93%, 56vw);
+    height: min(100%, 56vw);
   }
 
   .yh-top {
@@ -396,7 +417,11 @@
     background:
       linear-gradient(0deg, rgba(0, 0, 0, 0.8), transparent 60%),
       var(--shot, none) center / cover,
-      linear-gradient(135deg, hsl(var(--h) 85% 38%), hsl(calc(var(--h) + 50) 80% 14%));
+      linear-gradient(
+        135deg,
+        hsl(var(--h) 85% 38%),
+        hsl(calc(var(--h) + 50) 80% 14%)
+      );
     clip-path: polygon(0 0, 100% 0, 100% 100%, 26% 100%, 0 74%);
     animation: yh-swap 0.3s ease-out;
   }
@@ -444,7 +469,11 @@
     color: #fff;
     background:
       var(--shot, none) center / cover,
-      linear-gradient(135deg, hsl(var(--h) 85% 38%), hsl(calc(var(--h) + 50) 80% 14%));
+      linear-gradient(
+        135deg,
+        hsl(var(--h) 85% 38%),
+        hsl(calc(var(--h) + 50) 80% 14%)
+      );
     border: 0;
     box-shadow: -0.35rem 0.35rem 0 var(--yh-ink);
     font: inherit;

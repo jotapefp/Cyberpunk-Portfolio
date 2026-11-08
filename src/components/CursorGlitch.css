@@ -1,0 +1,66 @@
+/* definição do filtro SVG: precisa existir na página, mas não ocupa espaço */
+.cg-defs {
+  position: absolute;
+  width: 0;
+  height: 0;
+  pointer-events: none;
+}
+
+/* lente invisível ao redor do cursor (Chrome, Edge e Opera) */
+.cg-lens {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9000; /* abaixo da intro (9999) */
+  /* o recorte em círculo e a borda suave ficam no .tsx (clipPath e maskImage) */
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.15s;
+  will-change: transform;
+  -webkit-backdrop-filter: url(#cg-glitch);
+  backdrop-filter: url(#cg-glitch);
+}
+
+.cg-lens.on {
+  opacity: 1;
+}
+
+/* outros navegadores: elementos perto do cursor tremem com divisão RGB */
+.cg-hit {
+  --a: calc(var(--cg-i, 0.5) * 4px); /* deslocamento das cores */
+  --m: calc(var(--cg-i, 0.5) * 5px); /* tremor */
+  animation: cg-jitter 0.3s steps(1) infinite;
+}
+
+@keyframes cg-jitter {
+  0% {
+    translate: var(--m) 0;
+    filter: drop-shadow(var(--a) 0 0 rgba(255, 0, 60, 0.9))
+      drop-shadow(calc(var(--a) * -1) 0 0 rgba(0, 240, 255, 0.9));
+  }
+  30% {
+    translate: calc(var(--m) * -1) 0;
+    filter: drop-shadow(calc(var(--a) * -1) 0 0 rgba(255, 0, 60, 0.9))
+      drop-shadow(var(--a) 0 0 rgba(0, 240, 255, 0.9));
+  }
+  60% {
+    translate: 0 0;
+    filter: none;
+  }
+  80% {
+    translate: calc(var(--m) * 0.6) 0;
+    filter: drop-shadow(var(--a) 0 0 rgba(255, 0, 60, 0.9))
+      drop-shadow(calc(var(--a) * -1) 0 0 rgba(0, 240, 255, 0.9));
+  }
+}
+
+/* sem mouse (celular) ou com "reduzir movimento": desliga tudo */
+@media (hover: none), (prefers-reduced-motion: reduce) {
+  .cg-lens {
+    display: none;
+  }
+
+  .cg-hit {
+    animation: none;
+  }
+}
