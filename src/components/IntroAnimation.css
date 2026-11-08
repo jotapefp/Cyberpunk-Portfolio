@@ -1,3 +1,4 @@
+/* Primeira Página (ENTRAR EM NIGHT CITY) */
 html {
   scroll-behavior: smooth;
 }
@@ -16,47 +17,7 @@ body {
   font-family: "Rajdhani", sans-serif;
 }
 
-.navbar {
-  position: sticky;
-  top: 0;
-  z-index: 10;
-  background: rgba(10, 10, 15, 0.9);
-  border-bottom: 2px solid var(--yellow);
-}
-
-.navbar ul {
-  display: flex;
-  gap: 1rem;
-  list-style: none;
-  margin: 0;
-  padding: 1rem;
-  overflow-x: auto;
-}
-
-.navbar a {
-  color: var(--yellow);
-  text-decoration: none;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  white-space: nowrap;
-}
-
-.navbar a:hover {
-  color: var(--cyan);
-  text-shadow: 0 0 8px var(--cyan);
-}
-
-.section {
-  min-height: 100vh;
-  padding: 2rem 1rem;
-  scroll-margin-top: 70px;
-}
-
-.card {
-  border: 1px solid var(--cyan);
-  clip-path: polygon(0 0, 95% 0, 100% 15%, 100% 100%, 5% 100%, 0 85%);
-  padding: 1.5rem;
-}
+/* INTRODUÇÃO DA ANIMAÇÃO */
 
 .intro-gate {
   position: absolute;
@@ -114,7 +75,7 @@ body {
   align-items: center;
   justify-content: center;
   opacity: 0;
-  transition: opacity 1s ease; /* mesmo tempo do setTimeout de 1000ms */
+  transition: opacity 1s ease; 
   pointer-events: none;
 }
 
@@ -126,5 +87,5 @@ body {
   height: 100%;
   width: auto;
   max-width: 100%;
-  object-fit: contain; /* mantém a proporção, sem cortar */
+  object-fit: contain; 
 }

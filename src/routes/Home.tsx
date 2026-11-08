@@ -1,10 +1,9 @@
-import SkillTree from "../components/SkillTree.tsx";
-import "./Teste.css";
+import Menu from "../components/Menu.tsx";
 
 export default function Home() {
   return (
     <main>
-      <SkillTree />
+      <Menu />
     </main>
   );
 }
