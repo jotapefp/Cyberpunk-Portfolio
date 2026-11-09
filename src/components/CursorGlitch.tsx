@@ -1,18 +1,12 @@
 import { useEffect, useRef } from "react";
 import "./CursorGlitch.css";
 
-// alcance do efeito ao redor do cursor, em px
-const RADIUS = 80;
-
-// O filtro trabalha numa área maior que o círculo visível. Sem essa margem, a
-// borda da área deixava aparecer uma faixa verde (o canal vermelho é deslocado
-// para o lado e falta na ponta). Com a margem, a ponta fica fora do círculo.
+/* Alcance do Raio */
+const RADIUS = 55;
 const PAD = 48;
 const BOX = RADIUS * 2 + PAD * 2;
 const FEATHER = `radial-gradient(circle ${RADIUS}px at 50% 50%, #000 40%, transparent 100%)`;
 
-// Chrome, Edge e Opera distorcem tudo que está sob o cursor (imagens inclusive).
-// Nos outros navegadores, só estes elementos tremem quando o cursor chega perto.
 const isChromium =
   typeof navigator !== "undefined" && navigator.userAgent.includes("Chrome");
 const FALLBACK_TARGETS = "[data-glitch], h1, h2, h3, p, nav a, button, li";
@@ -27,7 +21,6 @@ export default function CursorGlitch() {
   const blueRef = useRef<SVGFEOffsetElement>(null);
 
   useEffect(() => {
-    // só em mouse de verdade e sem "reduzir movimento" ligado
     const fineMouse = window.matchMedia(
       "(hover: hover) and (pointer: fine)",
     ).matches;
@@ -45,7 +38,6 @@ export default function CursorGlitch() {
     let frame = 0;
     let timer = 0;
 
-    // a cada ~90ms sorteia um novo "quadro" de glitch: faixas, força e divisão RGB
     const tick = () => {
       turb.setAttribute("seed", String(Math.floor(rand(0, 1000))));
       turb.setAttribute("baseFrequency", `0 ${rand(0.03, 0.12).toFixed(3)}`);
@@ -62,7 +54,6 @@ export default function CursorGlitch() {
       });
     };
 
-    // fallback: treme os elementos próximos, mais forte quanto mais perto
     const update = () => {
       frame = 0;
       if (!active) return;
@@ -128,8 +119,6 @@ export default function CursorGlitch() {
 
   return (
     <>
-      {/* filtro: desloca faixas horizontais e separa os canais R e B.
-          Não muda nenhuma cor, então o fundo amarelo liso fica igual. */}
       <svg
         className="cg-defs"
         width="0"
@@ -193,7 +182,6 @@ export default function CursorGlitch() {
         </filter>
       </svg>
 
-      {/* lente invisível: só distorce o que passa por baixo dela */}
       <div
         ref={lensRef}
         className="cg-lens"

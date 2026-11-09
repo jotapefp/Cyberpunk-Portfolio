@@ -1,15 +1,17 @@
-import { useState, type CSSProperties } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
+
+/* Components */
+import ThemeToggle from "./ThemeToggle.tsx";
+import Emphasis from "./Emphasis.tsx";
 import "./Menu.css";
 
 /* Navbar com os links para acessar as rotas */
 const navLinks = [
-  { label: "Sobre mim", to: "/" },
+  { label: "Sobre mim", to: "/AboutMe" },
   { label: "Experiência", to: "/" },
   { label: "Projetos", to: "/" },
   { label: "Certificados e Cursos", to: "/" },
-  { label: "Ferramentas", to: "/" },
-  { label: "Contato", to: "/" },
 ];
 
 const stack = ["React", "TS", "JS", "CSS", "HTML"];
@@ -17,68 +19,8 @@ const GITHUB = "https://github.com/jotapefp";
 const LinkedIn =
   "https://www.linkedin.com/in/joao-paulo-pinheiro-ferraz-de-arruda";
 
-type Project = {
-  name: string;
-  description: string;
-  repo: string;
-  hue: number;
-  image?: string;
-};
-
-/* Projetos Info */
-const projects: Project[] = [
-  {
-    name: "Rick and Morty Wanted",
-    description: "Desenvolvimento front-end usando TypeScript.",
-    repo: "Rick-and-Morty-Wanted",
-    hue: 265,
-    image: "/public/image/rick.png",
-  },
-  {
-    name: "Dev Quiz",
-    description: "Quiz de programação em React + Vite",
-    repo: "Dev-Quiz",
-    hue: 265,
-    image: "/public/image/dev_quiz.png",
-  },
-  {
-    name: "Multi-Step Form",
-    description: "Formulário de avaliação em React, TypeScript e Vite",
-    repo: "Multi-Step-Form",
-    hue: 190,
-  },
-  {
-    name: "Dev Notes",
-    description: "App de notas",
-    repo: "Dev-Notes",
-    hue: 330,
-  },
-  {
-    name: "To-do List",
-    description: "Lista de tarefas",
-    repo: "To-do-List",
-    hue: 25,
-  },
-  {
-    name: "Countdown",
-    description: "Contador regressivo em React + Vite",
-    repo: "Countdown",
-    hue: 150,
-  },
-];
-
-const tint = (p: Project) =>
-  ({
-    "--h": p.hue,
-    "--shot": p.image ? `url(${p.image})` : "none",
-  }) as CSSProperties;
-
 export default function Menu() {
   const [menuOpen, setMenuOpen] = useState(false);
-  const [current, setCurrent] = useState(0);
-
-  const project = projects[current];
-  const next = projects[(current + 1) % projects.length];
 
   return (
     <section className="yh">
@@ -103,6 +45,7 @@ export default function Menu() {
           </nav>
 
           <div className="yh-social">
+            <ThemeToggle />
             <a
               href={GITHUB}
               target="_blank"
@@ -142,8 +85,8 @@ export default function Menu() {
           <img className="yh-figure" src="/jp.png" alt="" decoding="async" />
           <div className="yh-left">
             <h1 className="yh-title">
-              <span>João Paulo</span>
-              <span>Portfólio</span>
+              <span>Seja</span>
+              <span>Bem-Vindo</span>
             </h1>
             <span className="yh-dash" aria-hidden="true" />
             <p className="yh-lead">
@@ -162,53 +105,12 @@ export default function Menu() {
           </div>
 
           <div className="yh-right">
-            <a
-              key={project.repo}
-              className="yh-card"
-              href={`${GITHUB}/${project.repo}`}
-              target="_blank"
-              rel="noreferrer"
-            >
-              <span className="yh-card-img" style={tint(project)}>
-                <small>Projeto em destaque</small>
-                <strong>{project.name}</strong>
-                <span>{project.description}</span>
-              </span>
-            </a>
-
-            <div className="yh-switch">
-              <span>Próximo projeto</span>
-              <button
-                type="button"
-                className="yh-next"
-                style={tint(next)}
-                aria-label={`Mostrar o projeto ${next.name}`}
-                onClick={() => setCurrent((current + 1) % projects.length)}
-              >
-                {next.name}
-              </button>
-            </div>
+            <Emphasis />
           </div>
         </div>
 
         <footer className="yh-bottom">
-          <span>Desenvolvido por João Paulo Pinheiro © 2026</span>
-          <div
-            className="yh-dots"
-            role="group"
-            aria-label="Projetos em destaque"
-          >
-            {projects.map((p, i) => (
-              <button
-                key={p.repo}
-                type="button"
-                className={`yh-dot ${i === current ? "active" : ""}`}
-                aria-label={`Mostrar o projeto ${p.name}`}
-                aria-pressed={i === current}
-                onClick={() => setCurrent(i)}
-              />
-            ))}
-          </div>
+          <span>Desenvolvido por João Paulo Pinheiro &copy; 2026</span>
         </footer>
       </div>
     </section>

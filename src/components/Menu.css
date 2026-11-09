@@ -297,8 +297,7 @@
 /* ---------- rodapé ---------- */
 .yh-bottom {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   padding: 0.5rem 0.85rem;
   border-top: 1px solid var(--yh-line);
   font-size: 0.65rem;

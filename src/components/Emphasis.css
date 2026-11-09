@@ -1,0 +1,91 @@
+.fc {
+  position: relative;
+  display: block;
+  width: clamp(11rem, 19vw, 17rem);
+  color: #fff;
+  text-decoration: none;
+}
+
+.fc::after {
+  content: "";
+  position: absolute;
+  left: -1.15rem;
+  bottom: 0.75rem;
+  border-left: 0.55rem solid var(--yh-ink, #000);
+  border-top: 0.35rem solid transparent;
+  border-bottom: 0.35rem solid transparent;
+}
+
+.fc:focus-visible {
+  outline: 2px solid var(--yh-ink, #000);
+  outline-offset: 4px;
+}
+
+.fc-img {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  aspect-ratio: 1;
+  padding: 0.9rem 0.9rem 1rem 30%;
+  background:
+    linear-gradient(0deg, rgba(0, 0, 0, 0.8), transparent 60%),
+    var(--shot, none) center / cover,
+    linear-gradient(
+      135deg,
+      hsl(var(--h) 85% 38%),
+      hsl(calc(var(--h) + 50) 80% 14%)
+    );
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 26% 100%, 0 74%);
+  animation: fc-in 0.35s ease-out;
+  transition: filter 0.15s;
+}
+
+.fc:hover .fc-img {
+  filter: brightness(1.12);
+}
+
+.fc-icon {
+  position: absolute;
+  top: 0.9rem;
+  left: 0.9rem;
+  opacity: 0.9;
+}
+
+.fc-label {
+  font-size: 0.6rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  opacity: 0.8;
+}
+
+.fc-img strong {
+  font-size: 1.15rem;
+  font-weight: 700;
+  line-height: 1.1;
+}
+
+.fc-img span {
+  font-size: 0.72rem;
+  line-height: 1.25;
+  opacity: 0.9;
+}
+
+:root[data-theme="dark"] .fc-label {
+  color: var(--yh-cyan, #19d3da);
+  opacity: 1;
+}
+
+@keyframes fc-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fc-img {
+    animation: none;
+  }
+}

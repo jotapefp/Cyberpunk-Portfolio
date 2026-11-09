@@ -1,4 +1,3 @@
-/* definição do filtro SVG: precisa existir na página, mas não ocupa espaço */
 .cg-defs {
   position: absolute;
   width: 0;
@@ -6,13 +5,12 @@
   pointer-events: none;
 }
 
-/* lente invisível ao redor do cursor (Chrome, Edge e Opera) */
 .cg-lens {
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 9000; /* abaixo da intro (9999) */
-  /* o recorte em círculo e a borda suave ficam no .tsx (clipPath e maskImage) */
+  z-index: 9000;
+
   pointer-events: none;
   opacity: 0;
   transition: opacity 0.15s;
@@ -25,10 +23,9 @@
   opacity: 1;
 }
 
-/* outros navegadores: elementos perto do cursor tremem com divisão RGB */
 .cg-hit {
-  --a: calc(var(--cg-i, 0.5) * 4px); /* deslocamento das cores */
-  --m: calc(var(--cg-i, 0.5) * 5px); /* tremor */
+  --a: calc(var(--cg-i, 0.5) * 4px);
+  --m: calc(var(--cg-i, 0.5) * 5px);
   animation: cg-jitter 0.3s steps(1) infinite;
 }
 
@@ -54,7 +51,6 @@
   }
 }
 
-/* sem mouse (celular) ou com "reduzir movimento": desliga tudo */
 @media (hover: none), (prefers-reduced-motion: reduce) {
   .cg-lens {
     display: none;

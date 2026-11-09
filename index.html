@@ -13,6 +13,17 @@
       href="https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Rajdhani:wght@500;600;700&display=swap"
       rel="stylesheet"
     />
+    <!-- Troca a Cor do site -->
+    <script>
+      try {
+        var saved = localStorage.getItem("theme");
+        var dark = saved
+          ? saved === "dark"
+          : matchMedia("(prefers-color-scheme: dark)").matches;
+        document.documentElement.dataset.theme = dark ? "dark" : "light";
+      } catch (e) {}
+    </script>
+    
   </head>
   <body>
     <div id="root"></div>
