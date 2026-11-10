@@ -116,6 +116,7 @@
   min-height: 17rem;
   overflow: hidden;
   background: var(--ab-photo);
+  margin: 1px 1px 1px;
 }
 
 .ab-figure {
@@ -163,7 +164,8 @@
 }
 
 .ab-head {
-  padding: 1.1rem 3.6rem 1rem 1.25rem;
+  padding: 1.1rem 2.75rem 1rem;
+  text-align: center;
 }
 
 .ab-label {
@@ -443,6 +445,7 @@
   .ab-photo {
     --ab-photo-zoom: 1.35;
     min-height: 0;
+    margin: 1px 0 1px 1px;
   }
 
   .ab-info {
@@ -451,7 +454,7 @@
   }
 
   .ab-head {
-    padding: 1.5rem 4rem 1.1rem 1.5rem;
+    padding: 1.5rem 2.75rem 1.1rem;
   }
 
   .ab-name {

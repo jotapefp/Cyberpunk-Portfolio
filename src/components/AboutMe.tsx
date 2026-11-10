@@ -1,17 +1,8 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import {
-  Atom,
-  Braces,
-  Globe,
-  Palette,
-  Type,
-  Webhook,
-  X,
-  type LucideIcon,
-} from "lucide-react";
 
 /* Components */
+import { specs } from "../types/techs.ts";
 import Navbar from "./Navbar.tsx";
 import "./AboutMe.css";
 
@@ -21,27 +12,17 @@ import "./AboutMe.css";
 // ela "sai" do painel, como nas referências.
 const PHOTO = "/eu.png";
 
-const NAME = "João Paulo";
+const NAME = "João Paulo Pinheiro";
 
 const DESCRIPTION =
-  "Estudante de Ciência da Computação em busca de estágio em desenvolvimento web e full stack. Gosto de construir interfaces com React e TypeScript e estou sempre criando projetos novos para praticar.";
-
-// aba Especificações: linguagens e tecnologias
-const specs: { name: string; Icon: LucideIcon; color: string }[] = [
-  { name: "HTML5", Icon: Globe, color: "#ff8a1f" },
-  { name: "CSS3", Icon: Palette, color: "#19d3da" },
-  { name: "JavaScript", Icon: Braces, color: "#f5e60a" },
-  { name: "TypeScript", Icon: Type, color: "#b04cff" },
-  { name: "React.js", Icon: Atom, color: "#ff3a52" },
-  { name: "REST API", Icon: Webhook, color: "#6bde2c" },
-];
+  "Sou Desenvolvedor Web e estudante de Ciência da Computação (IBMR, 4º período), com formação técnica em Informática pelo CEFET/RJ. Estou em busca de uma oportunidade de estágio em desenvolvimento web/software.";
 
 // aba Habilidades. Os níveis (0 a 100) são EXEMPLOS: ajuste como achar justo.
 // "note" é um texto opcional ao lado do nome.
 const skills: { name: string; level: number; note?: string }[] = [
-  { name: "Inglês", level: 85, note: "Full Professional" },
-  { name: "Boa comunicação", level: 80 },
-  { name: "Trabalho em equipe", level: 90 },
+  { name: "Inglês", level: 85, note: "Profissional" },
+  { name: "Boa comunicação", level: 95 },
+  { name: "Trabalho em equipe", level: 95 },
 ];
 
 type Tab = "specs" | "skills";
@@ -73,14 +54,6 @@ export default function AboutMe() {
             </div>
 
             <div className="ab-info">
-              <Link
-                to="/"
-                className="ab-close"
-                aria-label="Fechar e voltar para o início"
-              >
-                <X size={16} aria-hidden="true" />
-              </Link>
-
               <header className="ab-head">
                 <span className="ab-label">Nome /</span>
                 <h1 id="ab-name" className="ab-name">
@@ -96,7 +69,7 @@ export default function AboutMe() {
                   aria-pressed={tab === "specs"}
                   onClick={() => setTab("specs")}
                 >
-                  Especificações
+                  Ferramentas
                 </button>
                 <button
                   type="button"

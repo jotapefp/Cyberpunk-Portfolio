@@ -24,6 +24,9 @@
   --nb-gx: 12px;
   --nb-pad-y: 0.55rem;
 
+  /* recorte de cantos dos botões (o mesmo dos ícones de tecnologia do Menu) */
+  --nb-cut: polygon(0 0, 76% 0, 100% 24%, 100% 100%, 24% 100%, 0 76%);
+
   position: relative;
   z-index: 20;
   margin: var(--nb-gy) var(--nb-gx) 0;
@@ -108,14 +111,46 @@
   gap: 0.5rem;
 }
 
+/* GitHub e LinkedIn: quadrado com cantos cortados e contorno, igual aos ícones de tecnologia */
 .nb-social a {
+  position: relative;
+  isolation: isolate;
   display: grid;
   place-items: center;
   width: var(--nb-box);
   height: var(--nb-box);
-  color: var(--yh-yellow);
+  color: var(--yh-ink);
+  transition: color 0.15s;
+}
+
+/* ::before = contorno, ::after = preenchimento (o clip-path corta borda normal) */
+.nb-social a::before,
+.nb-social a::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  clip-path: var(--nb-cut);
+}
+
+.nb-social a::before {
+  inset: 0;
   background: var(--yh-ink);
-  border-radius: 4px;
+}
+
+.nb-social a::after {
+  inset: 1.5px;
+  background: var(--yh-yellow);
+  transition: background 0.15s;
+}
+
+.nb-social a:hover,
+.nb-social a:focus-visible {
+  color: var(--yh-yellow);
+}
+
+.nb-social a:hover::after,
+.nb-social a:focus-visible::after {
+  background: var(--yh-ink);
 }
 
 .nb-social a svg {
@@ -212,10 +247,11 @@
   }
 }
 
-/* seletor de idioma: no desktop fica afastado do botão de tema */
+/* seletor de idioma: no desktop fica afastado do botão de tema.
+   A distância cresce com a largura da tela (30px em 1280px, 86px em 1920px). */
 @media (min-width: 1280px) {
   .nb .yh-lang {
-    margin-right: clamp(0.5rem, 2.4vw, 4.5rem);
+    margin-right: clamp(0.5rem, calc(8.6vw - 80px), 7rem);
   }
 }
 

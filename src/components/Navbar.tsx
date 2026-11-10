@@ -11,11 +11,9 @@ const BRAND = "HOME";
 /* Links da navbar. Troque o "/" pela rota de cada página quando criá-la */
 const navLinks = [
   { label: "Sobre mim", to: "/AboutMe" },
-  { label: "Experiência", to: "/" },
+  { label: "Experiência", to: "/Experience" },
   { label: "Projetos", to: "/" },
   { label: "Certificados e Cursos", to: "/" },
-  { label: "Ferramentas", to: "/" },
-  { label: "Contato", to: "/" },
 ];
 
 const GITHUB = "https://github.com/jotapefp";

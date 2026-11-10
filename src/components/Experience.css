@@ -1,0 +1,270 @@
+.xp,
+.xp *,
+.xp *::before,
+.xp *::after {
+  box-sizing: border-box;
+}
+
+/* tema claro: amarelo, igual às outras páginas */
+.xp {
+  --xp-text: #111;
+  --xp-line: #000;
+  --xp-halo: #05060b;
+  --xp-bar-h: 2.9rem; /* altura da barra de data */
+  --xp-gutter: 3rem; /* espaço entre a linha do tempo e os cartões */
+  --xp-r: 14px;
+
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  min-height: 100dvh;
+  background: #fcee0a;
+  color: var(--xp-text);
+  font-family: "Rajdhani", sans-serif;
+  transition:
+    background-color 0.25s ease,
+    color 0.25s ease;
+}
+
+/* tema escuro: azul-marinho com brilho ciano e vermelho nos cantos (a referência) */
+:root[data-theme="dark"] .xp {
+  --xp-text: #e9e9e9;
+  --xp-line: #fff;
+  background: var(--xp-halo);
+   
+}
+
+/* ---------- estrutura ---------- */
+.xp-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem clamp(1rem, 3vw, 2.5rem) 2.5rem;
+}
+
+.xp-crumbs {
+  font-size: clamp(0.8rem, 0.9vw, 1rem);
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.xp-crumbs a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.xp-crumbs a:hover,
+.xp-crumbs a:focus-visible {
+  text-decoration: underline;
+}
+
+/* título da página só para leitores de tela */
+.xp-sr {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ---------- linha do tempo ---------- */
+.xp-list {
+  position: relative;
+  display: grid;
+  gap: clamp(2.5rem, 6vh, 3.5rem);
+  width: min(100%, 980px);
+  /* espaço para as imagens saírem pelo topo do primeiro cartão */
+  margin: clamp(3rem, 8vh, 5rem) auto 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* a linha vertical */
+.xp-list::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0.6rem;
+  width: 2px;
+  background: var(--xp-line);
+}
+
+.xp-item {
+  position: relative;
+  padding-left: var(--xp-gutter);
+}
+
+/* bolinha na linha, alinhada com o meio da barra de data */
+.xp-dot {
+  position: absolute;
+  left: 0.6rem;
+  bottom: calc(var(--xp-bar-h) / 2);
+  translate: -50% 50%;
+  width: 0.95rem;
+  height: 0.95rem;
+  background: var(--xp-line);
+  border-radius: 50%;
+  box-shadow: 0 0 0 0.3rem var(--xp-halo);
+}
+
+/* tracejado da bolinha até a barra de data */
+.xp-conn {
+  position: absolute;
+  left: 0.6rem;
+  bottom: calc(var(--xp-bar-h) / 2);
+  width: calc(var(--xp-gutter) - 0.6rem);
+  translate: 0 50%;
+  border-top: 3px dotted var(--xp-line);
+}
+
+/* ---------- cores dos cartões ---------- */
+.xp-item[data-tone="cyan"] {
+  --c-bg: linear-gradient(135deg, #062a36 0%, #0a4254 55%, #0e5d73 100%);
+  --c-bar: #1c7d92;
+  --c-bar-text: #fff;
+  --c-text: #fff;
+}
+
+.xp-item[data-tone="yellow"] {
+  --c-bg: #fcee0a;
+  --c-bar: #8a7500;
+  --c-bar-text: #fff;
+  --c-text: #111;
+}
+
+.xp-item[data-tone="red"] {
+  --c-bg: linear-gradient(135deg, #5e0c1c 0%, #8f1a30 55%, #b3223a 100%);
+  --c-bar: #d4213a;
+  --c-bar-text: #fff;
+  --c-text: #fff;
+}
+
+/* no tema amarelo o cartão amarelo ficaria invisível no fundo: ele vira escuro */
+:root:not([data-theme="dark"]) .xp-item[data-tone="yellow"] {
+  --c-bg: #16161c;
+  --c-bar: #fcee0a;
+  --c-bar-text: #000;
+  --c-text: #f5e60a;
+}
+
+/* ---------- cartão ---------- */
+.xp-card {
+  position: relative;
+  min-height: clamp(13rem, 22vw, 16rem);
+  padding: 1.5rem 1.75rem calc(var(--xp-bar-h) + 1.25rem);
+  color: var(--c-text);
+  background: var(--c-bg);
+  border-radius: var(--xp-r);
+}
+
+/* com imagem, o texto deixa a direita livre */
+.xp-card--img {
+  padding-right: 42%;
+}
+
+.xp-kind {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  opacity: 0.85;
+}
+
+.xp-title {
+  margin: 0.25rem 0 0.15rem;
+  font-size: clamp(1.5rem, 2.6vw, 2.2rem);
+  font-weight: 600;
+  line-height: 1.1;
+}
+
+.xp-org {
+  margin: 0;
+  font-size: clamp(0.95rem, 1.3vw, 1.15rem);
+  font-weight: 600;
+  opacity: 0.9;
+}
+
+.xp-desc {
+  max-width: 34rem;
+  margin: 0.6rem 0 0;
+  font-size: clamp(0.85rem, 1.05vw, 1rem);
+  line-height: 1.45;
+  opacity: 0.9;
+}
+
+/* barra de data no canto de baixo */
+.xp-year {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  width: min(62%, 26rem);
+  height: var(--xp-bar-h);
+  margin: 0;
+  padding: 0 1.75rem;
+  color: var(--c-bar-text);
+  background: var(--c-bar);
+  border-bottom-left-radius: var(--xp-r);
+  font-size: clamp(1.4rem, 2.4vw, 2rem);
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+/* imagem do lado direito: sai pelo topo do cartão (use PNG com fundo transparente) */
+.xp-img {
+  position: absolute;
+  z-index: 1;
+  right: 1.5%;
+  bottom: 0;
+  height: 128%;
+  width: auto;
+  max-width: 44%;
+  object-fit: contain;
+  object-position: bottom right;
+  pointer-events: none;
+  user-select: none;
+}
+
+/* ---------- rodapé ---------- */
+.xp-foot {
+  padding: 0.6rem 1rem;
+  border-top: 1px solid color-mix(in srgb, var(--xp-line) 25%, transparent);
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+/* ---------- celular ---------- */
+@media (max-width: 639px) {
+  .xp {
+    --xp-gutter: 2.25rem;
+    --xp-bar-h: 2.5rem;
+  }
+
+  .xp-card {
+    padding: 1.25rem 1.1rem calc(var(--xp-bar-h) + 1rem);
+  }
+
+  .xp-card--img {
+    padding-right: 36%;
+  }
+
+  .xp-img {
+    height: 112%;
+    max-width: 38%;
+  }
+
+  .xp-year {
+    width: 68%;
+    padding: 0 1.1rem;
+  }
+}
