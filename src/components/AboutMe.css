@@ -1,0 +1,516 @@
+.ab,
+.ab *,
+.ab *::before,
+.ab *::after {
+  box-sizing: border-box;
+}
+
+/* tema claro: amarelo, igual ao Menu */
+.ab {
+  --ab-bg: #fcee0a;
+  --ab-ink: #000;
+  --ab-text: #111;
+  --ab-red: #c4122f;
+  --ab-cyan: #00606a;
+  --ab-muted: rgba(0, 0, 0, 0.45);
+  --ab-track: rgba(0, 0, 0, 0.2);
+  --ab-photo: rgba(0, 0, 0, 0.1);
+  --ab-cut: polygon(0 0, 100% 0, 100% 86%, 90% 100%, 0 100%);
+
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  min-height: 100dvh;
+  background: var(--ab-bg);
+  color: var(--ab-text);
+  font-family: "Rajdhani", sans-serif;
+  transition:
+    background-color 0.25s ease,
+    color 0.25s ease;
+}
+
+/* tema escuro: preto azulado, amarelo, vermelho e ciano (as referências) */
+:root[data-theme="dark"] .ab {
+  --ab-bg: #05060b;
+  --ab-ink: #f5e60a;
+  --ab-text: #e9e9e9;
+  --ab-red: #ff3a52;
+  --ab-cyan: #19d3da;
+  --ab-muted: #6f6e1f;
+  --ab-track: #3a3b42;
+  --ab-photo: linear-gradient(
+    160deg,
+    rgba(25, 211, 218, 0.12),
+    transparent 55%
+  );
+}
+
+/* ---------- estrutura (mobile) ---------- */
+.ab-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem clamp(1rem, 3vw, 2.5rem) 1.5rem;
+}
+
+.ab-crumbs {
+  font-size: clamp(0.8rem, 0.9vw, 1rem);
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.ab-crumbs a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.ab-crumbs a:hover,
+.ab-crumbs a:focus-visible {
+  text-decoration: underline;
+}
+
+.ab-stage {
+  position: relative;
+  width: min(100%, 1180px);
+  margin: auto;
+}
+
+.ab-edge {
+  display: none;
+}
+
+/* ---------- painel com canto cortado ---------- */
+.ab-card {
+  position: relative;
+  isolation: isolate;
+  display: grid;
+  grid-template-columns: 1fr;
+}
+
+/* ::before = borda, ::after = preenchimento (o clip-path corta borda normal) */
+.ab-card::before,
+.ab-card::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  clip-path: var(--ab-cut);
+}
+
+.ab-card::before {
+  inset: 0;
+  background: var(--ab-ink);
+}
+
+.ab-card::after {
+  inset: 1px;
+  background: var(--ab-bg);
+}
+
+/* ---------- foto ---------- */
+.ab-photo {
+  /* ampliação da foto (1 = tamanho normal), ancorada na base do quadrado */
+  --ab-photo-zoom: 1;
+
+  position: relative;
+  min-height: 17rem;
+  overflow: hidden;
+  background: var(--ab-photo);
+}
+
+.ab-figure {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  /* a foto preenche o quadrado sem sair das linhas.
+     Para um PNG de recorte (fundo transparente), troque cover por contain. */
+  object-fit: cover;
+  object-position: center;
+  scale: var(--ab-photo-zoom);
+  transform-origin: 50% 100%;
+  pointer-events: none;
+  user-select: none;
+}
+
+/* ---------- painel de informações ---------- */
+.ab-info {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  border-top: 1px solid var(--ab-ink);
+}
+
+.ab-close {
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: grid;
+  place-items: center;
+  width: 2.6rem;
+  height: 2.6rem;
+  color: var(--ab-red);
+  border-bottom: 1px solid var(--ab-ink);
+  border-left: 1px solid var(--ab-ink);
+}
+
+.ab-close:hover,
+.ab-close:focus-visible {
+  color: var(--ab-bg);
+  background: var(--ab-red);
+  outline: none;
+}
+
+.ab-head {
+  padding: 1.1rem 3.6rem 1rem 1.25rem;
+}
+
+.ab-label {
+  color: var(--ab-cyan);
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.ab-name {
+  margin: 0.15rem 0 0.5rem;
+  color: var(--ab-red);
+  font-size: clamp(1.8rem, 7vw, 2.4rem);
+  font-weight: 500;
+  line-height: 1.1;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+.ab-desc {
+  margin: 0;
+  font-size: 0.85rem;
+  line-height: 1.45;
+}
+
+/* ---------- abas ---------- */
+.ab-tabs {
+  display: flex;
+  gap: 1.75rem;
+  padding: 0 1.25rem;
+  border-bottom: 1px solid var(--ab-ink);
+}
+
+.ab-tab {
+  margin-bottom: -1px;
+  padding: 0.7rem 0;
+  color: var(--ab-muted);
+  background: none;
+  border: 0;
+  border-bottom: 2px solid transparent;
+  font: inherit;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: color 0.15s;
+}
+
+.ab-tab:hover,
+.ab-tab[aria-pressed="true"] {
+  color: var(--ab-ink);
+}
+
+.ab-tab[aria-pressed="true"] {
+  border-bottom-color: var(--ab-ink);
+}
+
+.ab-tab:focus-visible {
+  outline: 2px solid var(--ab-ink);
+  outline-offset: 3px;
+}
+
+/* ---------- aba Especificações ---------- */
+.ab-specs {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(5.2rem, 1fr));
+  gap: 1.4rem 0.75rem;
+  margin: 0;
+  padding: 1.25rem;
+  list-style: none;
+}
+
+.ab-spec {
+  display: grid;
+  justify-items: center;
+  gap: 0.5rem;
+  color: var(--c);
+  text-align: center;
+}
+
+.ab-spec span {
+  font-size: 0.62rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+/* no tema claro as cores escurecem, para aparecer sobre o amarelo */
+:root:not([data-theme="dark"]) .ab-spec {
+  color: color-mix(in srgb, var(--c) 55%, #000);
+}
+
+/* ---------- aba Habilidades ---------- */
+.ab-skills {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  flex: 1;
+}
+
+.ab-bars {
+  display: grid;
+  align-content: start;
+  gap: 1.1rem;
+  margin: 0;
+  padding: 1.25rem;
+  list-style: none;
+}
+
+.ab-skill-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 0.5rem;
+}
+
+.ab-skill-name {
+  color: var(--ab-red);
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.ab-skill-note {
+  color: var(--ab-cyan);
+  font-size: 0.6rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.ab-skill-row {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  margin-top: 0.35rem;
+}
+
+.ab-bar {
+  position: relative;
+  display: block;
+  flex: 1;
+  height: 0.32rem;
+  background: var(--ab-track);
+}
+
+.ab-bar > span {
+  position: absolute;
+  inset: 0 auto 0 0;
+  background: var(--ab-red);
+  animation: ab-fill 0.8s ease-out;
+}
+
+.ab-skill-val {
+  color: var(--ab-muted);
+  font-size: 0.65rem;
+  white-space: nowrap;
+}
+
+.ab-skill-val b {
+  color: var(--ab-red);
+  font-weight: 600;
+}
+
+/* losango com a média */
+.ab-total {
+  display: grid;
+  align-content: center;
+  justify-items: center;
+  gap: 0.9rem;
+  min-width: 7.5rem;
+  padding: 1rem 1.25rem;
+  border-left: 1px solid var(--ab-ink);
+}
+
+.ab-diamond {
+  display: grid;
+  place-items: center;
+  width: 3.4rem;
+  height: 3.4rem;
+  border: 1.5px solid var(--ab-ink);
+  rotate: 45deg;
+}
+
+.ab-diamond b {
+  rotate: -45deg;
+  color: var(--ab-ink);
+  font-size: 1.15rem;
+  font-weight: 600;
+}
+
+.ab-total-label {
+  color: var(--ab-ink);
+  font-size: 0.6rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+/* ---------- botão Próximo ---------- */
+.ab-next {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.8rem;
+  margin-top: 1rem;
+  color: var(--ab-ink);
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+/* o cartão "Próximo" usa sempre as cores do tema escuro */
+:root:not([data-theme="dark"]) .ab-next-tile {
+  --ab-bg: #05060b;
+  --ab-ink: #f5e60a;
+  --ab-cyan: #19d3da;
+}
+
+.ab-next-tile {
+  display: grid;
+  place-items: center;
+  align-content: center;
+  gap: 0.25rem;
+  width: 4.5rem;
+  height: 4.5rem;
+  color: var(--ab-ink);
+  background: var(--ab-bg);
+  border: 1px solid var(--ab-ink);
+  transition:
+    border-color 0.15s,
+    color 0.15s;
+}
+
+.ab-next-tile small {
+  font-size: 0.55rem;
+  letter-spacing: 0.06em;
+}
+
+.ab-next:hover .ab-next-tile,
+.ab-next:focus-visible .ab-next-tile {
+  color: var(--ab-cyan);
+  border-color: var(--ab-cyan);
+}
+
+.ab-next:focus-visible {
+  outline: none;
+}
+
+/* ---------- rodapé ---------- */
+.ab-foot {
+  padding: 0.6rem 1rem;
+  border-top: 1px solid color-mix(in srgb, var(--ab-ink) 25%, transparent);
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+@keyframes ab-fill {
+  from {
+    width: 0;
+  }
+}
+
+/* ---------- desktop: foto e painel lado a lado ---------- */
+@media (min-width: 900px) {
+  .ab-card {
+    grid-template-columns: 52fr 48fr;
+    min-height: clamp(24rem, 33vw, 32rem);
+  }
+
+  .ab-photo {
+    --ab-photo-zoom: 1.35;
+    min-height: 0;
+  }
+
+  .ab-info {
+    border-top: 0;
+    border-left: 1px solid var(--ab-ink);
+  }
+
+  .ab-head {
+    padding: 1.5rem 4rem 1.1rem 1.5rem;
+  }
+
+  .ab-name {
+    font-size: clamp(1.8rem, 3.4vw, 2.7rem);
+  }
+
+  .ab-desc {
+    font-size: clamp(0.72rem, 0.95vw, 0.85rem);
+  }
+
+  .ab-tabs {
+    padding: 0 1.5rem;
+  }
+
+  .ab-specs {
+    padding: 1.5rem;
+  }
+
+  .ab-bars {
+    padding: 1.5rem;
+  }
+}
+
+/* ---------- telas largas: botão Próximo e detalhes nas laterais ---------- */
+@media (min-width: 1100px) {
+  .ab-card {
+    width: 72%;
+    margin-inline: auto;
+  }
+
+  .ab-edge {
+    display: block;
+    position: absolute;
+    top: 50%;
+    width: 2px;
+    height: 2.8rem;
+    background: var(--ab-cyan);
+    translate: 0 -50%;
+  }
+
+  .ab-edge--left {
+    left: 0;
+  }
+
+  .ab-edge--right {
+    right: 0;
+  }
+
+  .ab-next {
+    position: absolute;
+    right: 1.25rem;
+    top: 50%;
+    margin: 0;
+    translate: 0 -50%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ab-bar > span {
+    animation: none;
+  }
+}

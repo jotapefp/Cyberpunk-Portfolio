@@ -1,0 +1,227 @@
+.nb,
+.nb *,
+.nb *::before,
+.nb *::after {
+  box-sizing: border-box;
+}
+
+/* As cores ficam aqui dentro, então a navbar funciona em qualquer página.
+   Os nomes --yh-* são os mesmos que o ThemeToggle usa. */
+.nb {
+  --yh-yellow: #fcee0a;
+  --yh-ink: #000;
+  --yh-line: rgba(0, 0, 0, 0.2);
+
+  /* Tamanhos: mexa aqui para aumentar ou diminuir a navbar */
+  --nb-brand: 1rem; /* nome à esquerda */
+  --nb-font: 0.9rem; /* links */
+  --nb-box: 1.9rem; /* quadrados do GitHub e do LinkedIn */
+  --nb-icon: 1rem; /* desenho dentro dos quadrados e do botão de tema */
+
+  /* Espaçamento: gy/gx = afastamento das bordas da tela (o mesmo da moldura do Menu);
+     pad-y = respiro acima e abaixo do conteúdo */
+  --nb-gy: 12px;
+  --nb-gx: 12px;
+  --nb-pad-y: 0.55rem;
+
+  position: relative;
+  z-index: 20;
+  margin: var(--nb-gy) var(--nb-gx) 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  /* o respiro de baixo soma o afastamento do topo: as palavras ficam
+     à mesma distância do topo da tela e da linha de baixo */
+  padding: var(--nb-pad-y) 0.85rem calc(var(--nb-gy) + var(--nb-pad-y));
+  background: var(--yh-yellow);
+  color: var(--yh-ink);
+  border-bottom: 1px solid var(--yh-line);
+  font-family: "Rajdhani", sans-serif;
+  transition:
+    background-color 0.25s ease,
+    color 0.25s ease;
+}
+
+/* modo escuro: as duas cores trocam de papel (veja o ThemeToggle.css) */
+:root[data-theme="dark"] .nb {
+  --yh-yellow: #05060b;
+  --yh-ink: #f5e60a;
+  --yh-line: rgba(255, 255, 255, 0.16);
+}
+
+/* Dentro do Menu a moldura já cria esse afastamento: sem margem extra */
+.yh .nb {
+  margin: 0;
+}
+
+.nb-brand {
+  color: inherit;
+  font-size: var(--nb-brand);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-decoration: none;
+}
+
+/* ---------- links (menu compacto: abrem pelo hambúrguer) ---------- */
+.nb-nav {
+  display: none;
+}
+
+.nb-nav.open {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  position: absolute;
+  top: 100%;
+  right: 0;
+  z-index: 5;
+  padding: 0.6rem 0.9rem;
+  background: var(--yh-yellow);
+  border: 1px solid var(--yh-ink);
+}
+
+.nb-nav a {
+  padding: 0.3rem 0;
+  color: var(--yh-ink);
+  font-size: var(--nb-font);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border-top: 2px solid transparent; /* equilibra o sublinhado e mantém o texto no centro */
+  border-bottom: 2px solid transparent;
+  transition: border-color 0.15s;
+}
+
+/* o link da página atual fica sublinhado */
+.nb-nav a:hover,
+.nb-nav a:focus-visible,
+.nb-nav a[aria-current="page"] {
+  border-bottom-color: var(--yh-ink);
+  outline: none;
+}
+
+/* ---------- ícones, botão de tema e hambúrguer ---------- */
+.nb-social {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.nb-social a {
+  display: grid;
+  place-items: center;
+  width: var(--nb-box);
+  height: var(--nb-box);
+  color: var(--yh-yellow);
+  background: var(--yh-ink);
+  border-radius: 4px;
+}
+
+.nb-social a svg {
+  width: var(--nb-icon);
+  height: var(--nb-icon);
+  fill: currentColor;
+}
+
+/* botão de tema (o ThemeToggle) acompanha o tamanho da navbar */
+.nb .yh-theme {
+  width: calc(var(--nb-box) * 2.3);
+  height: calc(var(--nb-box) * 1.2);
+}
+
+.nb .yh-theme-icon {
+  width: var(--nb-icon);
+  height: var(--nb-icon);
+}
+
+.nb-brand:focus-visible,
+.nb-social a:focus-visible,
+.nb-burger:focus-visible {
+  outline: 2px solid var(--yh-ink);
+  outline-offset: 3px;
+}
+
+.nb-burger {
+  display: grid;
+  gap: 5px;
+  width: calc(var(--nb-box) * 1.05);
+  margin-left: 0.4rem;
+  padding: 0.3rem 0;
+  background: none;
+  border: 0;
+  cursor: pointer;
+}
+
+.nb-burger span {
+  display: block;
+  height: 2.5px;
+  background: var(--yh-ink);
+}
+
+/* a partir de 900px o afastamento cresce, igual ao da moldura do Menu */
+@media (min-width: 900px) {
+  .nb {
+    --nb-gy: clamp(12px, 2.2vh, 24px);
+    --nb-gx: clamp(12px, 2vw, 32px);
+  }
+}
+
+/* menu compacto (abaixo de 1280px): o botão de tema fica colado nos ícones */
+@media (max-width: 1279px) {
+  .nb .yh-theme {
+    margin-right: 0.4rem;
+  }
+}
+
+/* ---------- desktop (a partir de 1280px): marca, links no centro, ícones à direita ---------- */
+@media (min-width: 1280px) {
+  .nb {
+    --nb-brand: clamp(0.95rem, 1.05vw, 1.15rem);
+    --nb-font: clamp(0.8rem, 0.9vw, 1rem);
+    --nb-box: clamp(1.8rem, 1.8vw, 2.1rem);
+    --nb-icon: clamp(1rem, 1.05vw, 1.15rem);
+    --nb-pad-y: 0.7rem;
+
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    padding: var(--nb-pad-y) 1.1rem calc(var(--nb-gy) + var(--nb-pad-y));
+  }
+
+  .nb-nav,
+  .nb-nav.open {
+    position: static;
+    display: flex;
+    flex-direction: row;
+    gap: clamp(0.9rem, 1.8vw, 2.2rem);
+    padding: 0;
+    background: none;
+    border: 0;
+  }
+
+  .nb-nav a {
+    padding: 0.2rem 0;
+  }
+
+  .nb-social {
+    justify-self: end;
+  }
+
+  .nb-burger {
+    display: none;
+  }
+}
+
+/* seletor de idioma: no desktop fica afastado do botão de tema */
+@media (min-width: 1280px) {
+  .nb .yh-lang {
+    margin-right: clamp(0.5rem, 2.4vw, 4.5rem);
+  }
+}
+
+/* telas muito estreitas: o seletor (ainda sem função) sai para a barra caber */
+@media (max-width: 519px) {
+  .nb .yh-lang {
+    display: none;
+  }
+}

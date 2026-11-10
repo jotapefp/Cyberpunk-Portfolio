@@ -1,0 +1,30 @@
+.yh-lang {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45em;
+  margin-right: 0.6rem;
+  padding: 0.3rem 0.1rem;
+  color: var(--yh-ink, currentColor);
+  background: none;
+  border: 0;
+  font: inherit;
+  font-size: var(--nb-font, 0.9rem);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  cursor: default; /* troque por pointer quando o seletor passar a funcionar */
+}
+
+/* triângulo pequeno ao lado do código */
+.yh-lang-arrow {
+  width: 0;
+  height: 0;
+  border-left: 0.38em solid currentColor;
+  border-top: 0.26em solid transparent;
+  border-bottom: 0.26em solid transparent;
+  opacity: 0.6;
+}
+
+.yh-lang:focus-visible {
+  outline: 2px solid var(--yh-ink, currentColor);
+  outline-offset: 3px;
+}
