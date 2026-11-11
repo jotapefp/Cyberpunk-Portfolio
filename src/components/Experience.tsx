@@ -26,18 +26,18 @@ const experiences: Item[] = [
     org: "Toque a Campainha Móveis (Grupo TAC)",
     description:
       "-Prestei suporte técnico em informática, atuando em problemas de hardware e software. Auxiliei na manutenção e organização de sistemas e equipamentos, identificando e corrigindo falhas",
-    tone: "cyan",
-    // image: "/experience/tac.png",
+    tone: "yellow",
+     image: "../public/ToqueCampainha.png",
   },
   {
-    period: "2024 – 2026",
+    period: "12/2024 – 10/2026",
     kind: "Jovem Aprendiz",
     title: "Arco Administrativo",
     org: "Tekno",
     description:
-      "Programa Jovem Aprendiz no Arco Administrativo, de dezembro de 2024 a outubro de 2026.",
-    tone: "yellow",
-    // image: "/experience/tekno.png",
+      "Programa Jovem Aprendiz no Arco Administrativo.",
+    tone: "cyan",
+    image: "../public/Tekno.png",
   },
   {
     period: "10/2026 – ????",
@@ -47,7 +47,7 @@ const experiences: Item[] = [
     description:
       "A procura de um estágio na área de TI, voltado para o desenvolvimento web/software",
     tone: "red",
-    // image: "/experience/ibmr.png",
+    image: "../public/BuscaEstagio.png",
   },
 ];
 

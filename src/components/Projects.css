@@ -1,0 +1,376 @@
+.pj,
+.pj *,
+.pj *::before,
+.pj *::after {
+  box-sizing: border-box;
+}
+
+/* tema claro: amarelo, igual às outras páginas */
+.pj {
+  --pj-bg: #fcee0a;
+  --pj-ink: #000;
+  --pj-text: #111;
+  --pj-cyan: #00606a;
+  --pj-muted: rgba(0, 0, 0, 0.45);
+  --pj-border: rgba(0, 0, 0, 0.3);
+  --pj-cut: 2.4rem; /* canto cortado do cartão grande */
+
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  min-height: 100dvh;
+  background: var(--pj-bg);
+  color: var(--pj-text);
+  font-family: "Rajdhani", sans-serif;
+  transition:
+    background-color 0.25s ease,
+    color 0.25s ease;
+}
+
+/* tema escuro: preto azulado, amarelo e ciano (a referência) */
+:root[data-theme="dark"] .pj {
+  --pj-bg: #05060b;
+  --pj-ink: #f5e60a;
+  --pj-text: #e9e9e9;
+  --pj-cyan: #19d3da;
+  --pj-muted: #6f6e1f;
+  --pj-border: #2c2f3a;
+}
+
+/* ---------- estrutura ---------- */
+.pj-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem clamp(1rem, 3vw, 2.5rem) 2.5rem;
+}
+
+.pj-bar {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  font-size: clamp(0.8rem, 0.9vw, 1rem);
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.pj-crumbs a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.pj-crumbs a:hover,
+.pj-crumbs a:focus-visible {
+  text-decoration: underline;
+}
+
+/* título da página só para leitores de tela */
+.pj-sr {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ---------- abas ---------- */
+.pj-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 2rem;
+  margin-top: 0.75rem;
+  border-bottom: 1px solid var(--pj-border);
+}
+
+.pj-tab {
+  margin-bottom: -1px;
+  padding: 0.8rem 0;
+  color: var(--pj-muted);
+  background: none;
+  border: 0;
+  border-bottom: 2px solid transparent;
+  font: inherit;
+  font-size: clamp(0.72rem, 0.8vw, 0.9rem);
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: color 0.15s;
+}
+
+.pj-tab:hover,
+.pj-tab[aria-pressed="true"] {
+  color: var(--pj-ink);
+}
+
+.pj-tab[aria-pressed="true"] {
+  border-bottom-color: var(--pj-ink);
+}
+
+.pj-tab:focus-visible {
+  outline: 2px solid var(--pj-ink);
+  outline-offset: 3px;
+}
+
+/* ---------- grade ---------- */
+.pj-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  width: min(100%, 1180px);
+  margin: 1.75rem auto 0;
+}
+
+/* ---------- cartão ---------- */
+.pj-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  color: var(--pj-text);
+  border: 1px solid var(--pj-border);
+  transition: border-color 0.15s;
+  view-transition-name: var(--vt, none); /* anima a troca de lugar ao abrir e fechar */
+}
+
+.pj-card:hover {
+  border-color: var(--pj-ink);
+}
+
+/* o botão do título cobre o cartão inteiro: clicar em qualquer parte abre ou fecha */
+.pj-toggle {
+  margin: 0;
+  padding: 0;
+  color: inherit;
+  background: none;
+  border: 0;
+  font: inherit;
+  letter-spacing: inherit;
+  text-align: left;
+  text-transform: inherit;
+  cursor: pointer;
+}
+
+.pj-toggle::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+}
+
+.pj-toggle:focus-visible {
+  outline: none;
+}
+
+.pj-toggle:focus-visible::after {
+  outline: 2px solid var(--pj-ink);
+  outline-offset: 3px;
+}
+
+.pj-card:hover .pj-toggle,
+.pj-toggle:focus-visible {
+  text-decoration: underline;
+  text-underline-offset: 0.25em;
+}
+
+/* parte de cima: texto, imagem e rodapé */
+.pj-top {
+  display: grid;
+  flex: 1;
+  grid-template-columns: 1fr clamp(4.5rem, 32%, 7.5rem);
+  grid-template-areas:
+    "text thumb"
+    "foot foot";
+  grid-template-rows: 1fr auto;
+  gap: 0.5rem 1rem;
+  min-height: 10.8rem;
+  padding: 1.25rem;
+}
+
+.pj-text {
+  grid-area: text;
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+}
+
+.pj-label {
+  color: var(--pj-cyan);
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.pj-title {
+  margin: 0;
+  color: var(--pj-ink);
+  font-size: clamp(1.1rem, 1.6vw, 1.45rem);
+  font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+
+.pj-thumb {
+  grid-area: thumb;
+  align-self: start;
+  display: grid;
+  place-items: center;
+  aspect-ratio: 1;
+  color: #fff;
+  font-size: 2.4rem;
+  font-weight: 700;
+  background:
+    var(--shot, none) center / cover,
+    linear-gradient(135deg, hsl(var(--h) 85% 38%), hsl(calc(var(--h) + 50) 80% 14%));
+}
+
+.pj-foot {
+  grid-area: foot;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.pj-meta {
+  font-size: 0.7rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+/* único ponto do cartão que leva ao GitHub (fica acima do botão que cobre o cartão) */
+.pj-more {
+  position: relative;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-left: auto;
+  color: var(--pj-cyan);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.pj-more svg {
+  transition: translate 0.15s;
+}
+
+.pj-more:hover {
+  text-decoration: underline;
+  text-underline-offset: 0.25em;
+}
+
+.pj-more:hover svg,
+.pj-more:focus-visible svg {
+  translate: 0.25rem 0;
+}
+
+.pj-more:focus-visible {
+  outline: 2px solid var(--pj-ink);
+  outline-offset: 3px;
+}
+
+/* ---------- cartão grande (destaque) ---------- */
+.pj-card--feat {
+  isolation: isolate;
+  border: 0;
+}
+
+/* ::before = contorno, ::after = preenchimento (o clip-path corta borda normal) */
+.pj-card--feat::before,
+.pj-card--feat::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  clip-path: polygon(
+    0 0,
+    100% 0,
+    100% calc(100% - var(--pj-cut)),
+    calc(100% - var(--pj-cut)) 100%,
+    0 100%
+  );
+}
+
+.pj-card--feat::before {
+  inset: 0;
+  background: var(--pj-ink);
+}
+
+.pj-card--feat::after {
+  inset: 1px;
+  background: var(--pj-bg);
+}
+
+.pj-card--feat .pj-top {
+  flex: none;
+  border-bottom: 1px solid var(--pj-ink);
+}
+
+/* parte de baixo: descrição e link */
+.pj-desc {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1.25rem 1.25rem 1.75rem;
+  color: var(--pj-cyan);
+  font-size: clamp(0.85rem, 1vw, 0.95rem);
+  line-height: 1.5;
+}
+
+.pj-desc p {
+  margin: 0;
+}
+
+.pj-desc .pj-more {
+  margin-left: 0;
+}
+
+/* número no canto cortado */
+.pj-index {
+  position: absolute;
+  right: 0.55rem;
+  bottom: 0.35rem;
+  color: var(--pj-ink);
+  font-size: 0.7rem;
+  font-weight: 600;
+}
+
+/* ---------- rodapé ---------- */
+.pj-end {
+  padding: 0.6rem 1rem;
+  border-top: 1px solid color-mix(in srgb, var(--pj-ink) 25%, transparent);
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+/* ---------- telas médias: duas colunas; o cartão aberto cresce para baixo, no mesmo lugar ---------- */
+@media (min-width: 700px) {
+  .pj-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .pj-card--feat {
+    grid-row: span 2;
+  }
+}
+
+/* ---------- telas largas: três colunas ---------- */
+@media (min-width: 1100px) {
+  .pj-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.1rem;
+  }
+}

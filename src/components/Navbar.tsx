@@ -12,8 +12,8 @@ const BRAND = "HOME";
 const navLinks = [
   { label: "Sobre mim", to: "/AboutMe" },
   { label: "Experiência", to: "/Experience" },
-  { label: "Projetos", to: "/" },
-  { label: "Certificados e Cursos", to: "/" },
+  { label: "Projetos", to: "/Projects" },
+  { label: "Certificados e Cursos", to: "/Certificates" },
 ];
 
 const GITHUB = "https://github.com/jotapefp";
