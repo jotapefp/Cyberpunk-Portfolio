@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
 
 /* Components */
-import Navbar from "./Navbar.tsx";
+
 import "./Projects.css";
 
 const GITHUB = "https://github.com/jotapefp";
@@ -144,12 +144,15 @@ export default function Projects() {
     const calm = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     document
       .querySelector(".pj-card--feat")
-      ?.scrollIntoView({ block: "nearest", behavior: calm ? "auto" : "smooth" });
+      ?.scrollIntoView({
+        block: "nearest",
+        behavior: calm ? "auto" : "smooth",
+      });
   }, [open]);
 
   return (
     <div className="pj">
-      <Navbar />
+      
 
       <main className="pj-main">
         <div className="pj-bar">
@@ -237,9 +240,7 @@ export default function Projects() {
         </div>
       </main>
 
-      <footer className="pj-end">
-        Desenvolvido por João Paulo Pinheiro &copy; 2026
-      </footer>
+      
     </div>
   );
 }

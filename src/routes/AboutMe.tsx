@@ -3,13 +3,8 @@ import { Link } from "react-router-dom";
 
 /* Components */
 import { specs } from "../types/techs.ts";
-import Navbar from "./Navbar.tsx";
 import "./AboutMe.css";
 
-/* ---------- conteúdo: edite à vontade ---------- */
-
-// Troque pela sua foto em public/. Funciona melhor com fundo transparente:
-// ela "sai" do painel, como nas referências.
 const PHOTO = "/eu.png";
 
 const NAME = "João Paulo Pinheiro";
@@ -37,8 +32,6 @@ export default function AboutMe() {
 
   return (
     <div className="ab">
-      <Navbar />
-
       <main className="ab-main">
         <nav className="ab-crumbs" aria-label="Você está em">
           <Link to="/">Home</Link> / <span>Sobre mim</span>
@@ -136,10 +129,6 @@ export default function AboutMe() {
           </section>
         </div>
       </main>
-
-      <footer className="ab-foot">
-        Desenvolvido por João Paulo Pinheiro &copy; 2026
-      </footer>
     </div>
   );
 }

@@ -5,10 +5,10 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 // Pages
 import Home from "./routes/Home.tsx";
 import App from "./App.tsx";
-import AboutMe from "./components/AboutMe.tsx";
-import Experience from "./components/Experience.tsx";
-import Projects from "./components/Projects.tsx";
-import Certificates from "./components/Certificates.tsx";
+import AboutMe from "./routes/AboutMe.tsx";
+import Experience from "./routes/Experience.tsx";
+import Projects from "./routes/Projects.tsx";
+import Certificates from "./routes/Certificates.tsx";
 
 const router = createBrowserRouter([
   {

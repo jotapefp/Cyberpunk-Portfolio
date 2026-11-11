@@ -1,8 +1,12 @@
 import { useState } from "react";
 import { Outlet } from "react-router-dom";
 
+/* Components */
 import CursorGlitch from "./components/CursorGlitch";
 import IntroAnimation from "./components/IntroAnimation.tsx";
+import Footer from "./components/Footer.tsx";
+import Navbar from "./components//Navbar.tsx";
+
 import "./components/IntroAnimation.css";
 
 export default function App() {
@@ -10,15 +14,13 @@ export default function App() {
 
   return (
     // dentro do return do App, antes da intro:
-<>
-  <CursorGlitch />
-  {/* INTRO DESATIVADA */}
-  {/* {showIntro && <IntroAnimation onFinish={() => setShowIntro(false)} />} */}
-  <Outlet/>
-</>
+    <>
+      <CursorGlitch />
+      {/* INTRO DESATIVADA */}
+      {/* {showIntro && <IntroAnimation onFinish={() => setShowIntro(false)} />} */}
+      <Navbar />
+      <Outlet />
+      <Footer />
+    </>
   );
 }
-
-
-
-
