@@ -1,15 +1,12 @@
 import { Link } from "react-router-dom";
 
 /* Components */
-
-import "./Experience.css";
 import { experiences } from "../types/Experiences.ts";
+import "./Experience.css";
 
 export default function Experience() {
   return (
     <div className="xp">
-      
-
       <main className="xp-main">
         <nav className="xp-crumbs" aria-label="Você está em">
           <Link to="/">Home</Link> /{" "}
@@ -48,8 +45,6 @@ export default function Experience() {
           ))}
         </ol>
       </main>
-
-    
     </div>
   );
 }

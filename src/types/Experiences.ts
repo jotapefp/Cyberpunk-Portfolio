@@ -33,7 +33,7 @@ export const experiences: Item[] = [
   },
   {
     period: "10/2026 – ????",
-    kind: "",
+    kind: "Objetivo Atual",
     title: "Buscando Estágio",
     org: "",
     description:

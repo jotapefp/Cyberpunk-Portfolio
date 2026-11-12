@@ -2,60 +2,111 @@ export type Course = {
   title: string;
   type: string;
   issuer?: string;
-  date?: string
+  date?: string;
   hue: number;
   image?: string;
 };
 
 export const courses: Course[] = [
   {
-    title: "HTML Essentials",
-    type: "HTML",
-    issuer: "Cisco Networking Academy",
-    date: "27/09/2026",
+    title: "Ciência da Computação de Harvard no Brasil",
+    type: "Lógica de Programação",
+    issuer: "Fundação Escola",
+    date: "06/2026",
     hue: 15,
-    // image: "/certificates/html-essentials.png",
-  },
-  {
-    title: "CSS Essentials",
-    type: "CSS",
-    issuer: "Cisco Networking Academy",
-    date: "29/09/2026",
-    hue: 210,
-    // image: "/certificates/css-essentials.png",
-  },
-  {
-    title: "Lógica de programação essencial",
-    type: "Lógica de programação",
-    hue: 150,
+    image: "../public/ImageCertificate/Certificado_Havard.png",
   },
   {
     title: "Programador Web em Tecnologias Front-end",
-    type: "Front-end",
-    issuer: "IFMG",
+    type: "Front-End",
+    issuer:
+      "Instituto Federal de Educação, Ciência e Tecnologia de Minas Gerais",
     date: "10/2026",
-    hue: 190,
+    hue: 15,
+    image: "../public/ImageCertificate/Certificado_IFMG_FrontEnd.png",
+  },
+  {
+    title: "Programação Web (Básico)",
+    type: "Front-End",
+    issuer:
+      "Instituto Federal de Educação, Ciência e Tecnologia de Minas Gerais",
+    date: "10/2026",
+    hue: 15,
+    image: "../public/ImageCertificate/Certificado_IFMG_WebBasico.png",
+  },
+  {
+    title: "Programação Web (Avançado)",
+    type: "Front-End",
+    issuer:
+      "Instituto Federal de Educação, Ciência e Tecnologia de Minas Gerais",
+    date: "10/2026",
+    hue: 15,
+    image: "../public/ImageCertificate/Certificado_IFMG_WebAvancado.png",
+  },
+  {
+    title: "JavaScript (básico)",
+    type: "JavaScript",
+    issuer:
+      "Instituto Federal de Educação, Ciência e Tecnologia de Minas Gerais",
+    date: "10/2026",
+    hue: 15,
+    //image: "../public/ImageCertificate/Certificado_IFMG_WebAvancado.png",
+  },
+  {
+    title: "JavaScript (avançado)",
+    type: "JavaScript",
+    issuer:
+      "Instituto Federal de Educação, Ciência e Tecnologia de Minas Gerais",
+    date: "10/2026",
+    hue: 15,
+    //image: "../public/ImageCertificate/Certificado_IFMG_WebAvancado.png",
+  },
+  {
+    title: "CSS Essentials",
+    type: "Front-End",
+    issuer: "Cisco Academy",
+    date: "09/2026",
+    hue: 15,
+    //image: "../public/ImageCertificate/Certificado_IFMG_WebAvancado.png",
+  },
+  {
+    title: "HTML Essentials",
+    type: "Front-End",
+    issuer: "Cisco Academy",
+    date: "09/2026",
+    hue: 15,
+    //image: "../public/ImageCertificate/Certificado_IFMG_WebAvancado.png",
+  },
+  {
+    title: "Introdução a criação de websites com HTML5 e CSS3",
+    type: "Front-End",
+    issuer: "Digital Innovation One",
+    date: "11/2020",
+    hue: 15,
+    //image: "../public/ImageCertificate/Certificado_IFMG_WebAvancado.png",
+  },
+  {
+    title: "Lógica de programação essencial",
+    type: "Lógica de Programação",
+    issuer: "Digital Innovation One",
+    date: "11/2020",
+    hue: 15,
+    //image: "../public/ImageCertificate/Certificado_IFMG_WebAvancado.png",
   },
   {
     title: "Engenharia de Software",
-    type: "Engenharia de Software",
-    issuer: "FIAP, 100 horas",
-    date: "01/10/2026",
-    hue: 340,
+    type: "Lógica de Programação",
+    issuer: "FIAP",
+    date: "10/2026",
+    hue: 15,
+    //image: "../public/ImageCertificate/Certificado_IFMG_WebAvancado.png",
   },
   {
-    title: "Bootcamp Everis FullStack Developer",
-    type: "Full Stack",
-    hue: 265,
-  },
-  {
-    title: "Internet Segura",
-    type: "Fundamentos",
-    hue: 120,
-  },
-  {
-    title: "Introdução ao Mundo Digital",
-    type: "Fundamentos",
-    hue: 50,
+    title: "Formação Front-end - HTML, CSS, JavaScript, React",
+    type: "Front-end",
+    issuer: "Udemy",
+    date: "08/2026",
+    hue: 15,
+    //image: "../public/ImageCertificate/Certificado_IFMG_WebAvancado.png",
   },
 ];

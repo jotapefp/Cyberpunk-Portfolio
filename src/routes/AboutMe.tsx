@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { skills, icons, type Tab } from "../types/AboutMe.ts";
 import "./AboutMe.css";
 
+/* Dados do Card */
 const PHOTO = "/eu.png";
 
 const NAME = "João Paulo Pinheiro";
@@ -15,7 +16,7 @@ const DESCRIPTION =
 export default function AboutMe() {
   const [tab, setTab] = useState<Tab>("icons");
 
-  // média dos níveis, mostrada no losango
+  /*  média dos níveis, mostrada no losango */
   const average = Math.round(
     skills.reduce((sum, skill) => sum + skill.level, 0) / skills.length,
   );
