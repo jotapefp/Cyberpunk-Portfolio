@@ -25,15 +25,15 @@ function Thumb({ project }: { project: Project }) {
   );
 }
 
-/* Função que leva para a pagina do projeto */
-function TestProject({ project }: { project: Project }) {
+/* Link para o projeto funcionando (só aparece quando o projeto tem urlTest) */
+function TestProject({ title, url }: { title: string; url: string }) {
   return (
     <a
       className="pj-more"
-      href={project.urlTest}
+      href={url}
       target="_blank"
       rel="noreferrer"
-      aria-label={`${project.title}: abrir o repositório no GitHub (nova aba)`}
+      aria-label={`${title}: abrir o projeto funcionando (nova aba)`}
     >
       Ver Projeto <ArrowRight size={18} aria-hidden="true" />
     </a>
@@ -167,8 +167,15 @@ export default function Projects() {
                   <>
                     <div className="pj-desc">
                       <p>{project.description}</p>
-                      <GithubLink project={project} />
-                      <TestProject project={project} />
+                      <div className="pj-links">
+                        <GithubLink project={project} />
+                        {project.urlTest && (
+                          <TestProject
+                            title={project.title}
+                            url={project.urlTest}
+                          />
+                        )}
+                      </div>
                     </div>
                     <span className="pj-index" aria-hidden="true">
                       {pad(index + 1)}

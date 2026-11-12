@@ -19,7 +19,7 @@ export const projects: Project[] = [
     stack: "HTML5 + CSS3 + React + TypeScript + API REST",
     tags: ["TypeScript"],
     hue: 190,
-    image: "../public/ImageProjects/Rick_And_Morty.png",
+    image: "/ImageProjects/Rick_And_Morty.png",
   },
   {
     title: "Dev Quiz",
@@ -29,7 +29,7 @@ export const projects: Project[] = [
     stack: "HTML5 + CSS3 + JavaScript + React",
     tags: ["JavaScript"],
     hue: 265,
-    image: "../public/ImageProjects/Dev_Quiz.png",
+    image: "/ImageProjects/Dev_Quiz.png",
   },
   {
     title: "Multi-Step Form",
@@ -39,7 +39,7 @@ export const projects: Project[] = [
     stack: "HTML5 + CSS3 + React + TypeScript",
     tags: ["TypeScript"],
     hue: 150,
-    image: "../public/ImageProjects/Multi_Step_Form.png",
+    image: "/ImageProjects/Multi_Step_Form.png",
   },
   {
     title: "Dev Notes",
@@ -49,7 +49,7 @@ export const projects: Project[] = [
     stack: "HTML5 + CSS3 + JavaScript",
     tags: ["JavaScript"],
     hue: 330,
-    image: "../public/ImageProjects/Dev_Notes.png",
+    image: "/ImageProjects/Dev_Notes.png",
   },
   {
     title: "To-do List",
@@ -59,16 +59,16 @@ export const projects: Project[] = [
     stack: "HTML5 + CSS3 + JavaScript",
     tags: ["JavaScript"],
     hue: 25,
-    image: "../public/ImageProjects/To_Do_List.png",
+    image: "/ImageProjects/To_Do_List.png",
   },
   {
     title: "Countdown",
     description:
       "Aplicação web para montar a sua própria contagem regressiva. Você define o título do evento, a data e hora, uma imagem de fundo e a cor do tema, e o app mostra quantos dias, horas, minutos e segundos faltam — atualizando em tempo real.",
     url: "https://github.com/jotapefp/Countdown",
-    stack: "HTML5 + CSS3 + JavaScript+ React",
+    stack: "HTML5 + CSS3 + JavaScript + React",
     tags: ["JavaScript"],
     hue: 210,
-    image: "../public/ImageProjects/Countdown.png",
+    image: "/ImageProjects/Countdown.png",
   },
 ];

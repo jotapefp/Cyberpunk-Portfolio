@@ -135,7 +135,10 @@
   color: var(--pj-text);
   border: 1px solid var(--pj-border);
   transition: border-color 0.15s;
-  view-transition-name: var(--vt, none); /* anima a troca de lugar ao abrir e fechar */
+  view-transition-name: var(
+    --vt,
+    none
+  ); /* anima a troca de lugar ao abrir e fechar */
 }
 
 .pj-card:hover {
@@ -227,7 +230,11 @@
   font-weight: 700;
   background:
     var(--shot, none) center / cover,
-    linear-gradient(135deg, hsl(var(--h) 85% 38%), hsl(calc(var(--h) + 50) 80% 14%));
+    linear-gradient(
+      135deg,
+      hsl(var(--h) 85% 38%),
+      hsl(calc(var(--h) + 50) 80% 14%)
+    );
 }
 
 .pj-foot {
@@ -343,6 +350,13 @@
   color: var(--pj-ink);
   font-size: 0.7rem;
   font-weight: 600;
+}
+
+/* os links ficam lado a lado e só o texto é clicável */
+.pj-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem 1.5rem;
 }
 
 /* ---------- rodapé ---------- */
