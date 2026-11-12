@@ -36,7 +36,7 @@
   /* o respiro de baixo soma o afastamento do topo: as palavras ficam
      à mesma distância do topo da tela e da linha de baixo */
   padding: var(--nb-pad-y) 0.85rem calc(var(--nb-gy) + var(--nb-pad-y));
-  background: var(--yh-yellow);
+  background: transparent; /* mostra o fundo do site: assim não aparece uma faixa de outra cor */
   color: var(--yh-ink);
   border-bottom: 1px solid var(--yh-line);
   font-family: "Rajdhani", sans-serif;

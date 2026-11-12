@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 
 /* Components */
-import { specs } from "../types/techs.ts";
+import { skills, icons, type Tab } from "../types/AboutMe.ts";
 import "./AboutMe.css";
 
 const PHOTO = "/eu.png";
@@ -12,18 +12,8 @@ const NAME = "João Paulo Pinheiro";
 const DESCRIPTION =
   "Sou Desenvolvedor Web e estudante de Ciência da Computação (IBMR, 4º período), com formação técnica em Informática pelo CEFET/RJ. Estou em busca de uma oportunidade de estágio em desenvolvimento web/software.";
 
-// aba Habilidades. Os níveis (0 a 100) são EXEMPLOS: ajuste como achar justo.
-// "note" é um texto opcional ao lado do nome.
-const skills: { name: string; level: number; note?: string }[] = [
-  { name: "Inglês", level: 85, note: "Profissional" },
-  { name: "Boa comunicação", level: 95 },
-  { name: "Trabalho em equipe", level: 95 },
-];
-
-type Tab = "specs" | "skills";
-
 export default function AboutMe() {
-  const [tab, setTab] = useState<Tab>("specs");
+  const [tab, setTab] = useState<Tab>("icons");
 
   // média dos níveis, mostrada no losango
   const average = Math.round(
@@ -59,8 +49,8 @@ export default function AboutMe() {
                 <button
                   type="button"
                   className="ab-tab"
-                  aria-pressed={tab === "specs"}
-                  onClick={() => setTab("specs")}
+                  aria-pressed={tab === "icons"}
+                  onClick={() => setTab("icons")}
                 >
                   Ferramentas
                 </button>
@@ -74,9 +64,9 @@ export default function AboutMe() {
                 </button>
               </div>
 
-              {tab === "specs" ? (
+              {tab === "icons" ? (
                 <ul className="ab-specs">
-                  {specs.map(({ name, Icon, color }) => (
+                  {icons.map(({ name, Icon, color }) => (
                     <li
                       key={name}
                       className="ab-spec"

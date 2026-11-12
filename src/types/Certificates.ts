@@ -1,4 +1,4 @@
-type Course = {
+export type Course = {
   title: string;
   type: string;
   issuer?: string;

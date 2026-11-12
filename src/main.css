@@ -1,0 +1,45 @@
+/* Estilos globais do site */
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* cores do site: tema claro (amarelo) e tema escuro (preto azulado) */
+:root {
+  --bg: #fcee0a;
+  --yellow: #fcee0a;
+  --cyan: #00f0ff;
+  --red: #ff003c;
+}
+
+:root[data-theme="dark"] {
+  --bg: #05060b;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: #111;
+  font-family: "Rajdhani", sans-serif;
+  transition:
+    background-color 0.25s ease,
+    color 0.25s ease;
+}
+
+:root[data-theme="dark"] body {
+  color: #e6e6e6;
+}
+
+/* layout: navbar no topo, página no meio (ocupa o espaço que sobra) e rodapé embaixo */
+.site {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  min-height: 100dvh;
+}
+
+.site-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}

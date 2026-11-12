@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { Award } from "lucide-react";
 
 /* Components */
-import { courses } from "../types/Certificates.ts";
+import { courses, type Course } from "../types/Certificates.ts";
 import "./Certificates.css";
 
 const ALL = "Todos";
@@ -31,8 +31,6 @@ export default function Certificates() {
 
   return (
     <div className="ct">
-      
-
       <main className="ct-main">
         <div className="ct-bar">
           <nav className="ct-crumbs" aria-label="Você está em">
@@ -87,8 +85,6 @@ export default function Certificates() {
           ))}
         </ul>
       </main>
-
-      
     </div>
   );
 }

@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 /* Components */
 
-import Emphasis from "../components/Emphasis.tsx";
+import InfoProject from "../components/InfoProject.tsx";
 import "./Home.css";
 
 const stack = ["React", "TS", "JS", "CSS", "HTML"];
@@ -39,7 +39,7 @@ export default function Home() {
           </div>
 
           <div className="yh-right">
-            <Emphasis />
+            <InfoProject />
           </div>
         </div>
       </div>
