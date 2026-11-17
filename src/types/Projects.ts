@@ -19,7 +19,7 @@ export const projects: Project[] = [
     stack: "HTML5 + CSS3 + React + TypeScript + API REST",
     tags: ["TypeScript"],
     hue: 190,
-    image: "/ImageProjects/Rick_And_Morty.png",
+    image: "/ImageProjects/Rick_And_Morty.webp",
   },
   {
     title: "Dev Quiz",
@@ -29,7 +29,7 @@ export const projects: Project[] = [
     stack: "HTML5 + CSS3 + JavaScript + React",
     tags: ["JavaScript"],
     hue: 265,
-    image: "/ImageProjects/Dev_Quiz.png",
+    image: "/ImageProjects/Dev_Quiz.webp",
   },
   {
     title: "Multi-Step Form",
@@ -39,7 +39,7 @@ export const projects: Project[] = [
     stack: "HTML5 + CSS3 + React + TypeScript",
     tags: ["TypeScript"],
     hue: 150,
-    image: "/ImageProjects/Multi_Step_Form.png",
+    image: "/ImageProjects/Multi_Step_Form.webp",
   },
   {
     title: "Dev Notes",
@@ -49,7 +49,7 @@ export const projects: Project[] = [
     stack: "HTML5 + CSS3 + JavaScript",
     tags: ["JavaScript"],
     hue: 330,
-    image: "/ImageProjects/Dev_Notes.png",
+    image: "/ImageProjects/Dev_Notes.webp",
   },
   {
     title: "To-do List",
@@ -59,7 +59,7 @@ export const projects: Project[] = [
     stack: "HTML5 + CSS3 + JavaScript",
     tags: ["JavaScript"],
     hue: 25,
-    image: "/ImageProjects/To_Do_List.png",
+    image: "/ImageProjects/To_Do_List.webp",
   },
   {
     title: "Countdown",
@@ -69,6 +69,6 @@ export const projects: Project[] = [
     stack: "HTML5 + CSS3 + JavaScript + React",
     tags: ["JavaScript"],
     hue: 210,
-    image: "/ImageProjects/Countdown.png",
+    image: "/ImageProjects/Countdown.webp",
   },
 ];

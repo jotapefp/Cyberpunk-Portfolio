@@ -1,10 +1,12 @@
-import { useState, type CSSProperties } from "react";
-import { Link } from "react-router-dom";
+import { useState } from "react";
 import { ArrowDown, ArrowUp, Award } from "lucide-react";
 
 /* Components */
-import { courses, type Course } from "../types/Certificates.ts";
-import "./Certificates.css";
+import Breadcrumb from "../components/Breadcrumb.tsx";
+import CardHead from "../components/CardHead.tsx";
+import CardThumb from "../components/CardThumb.tsx";
+import TabButton from "../components/TabButton.tsx";
+import { courses } from "../types/Certificates.ts";
 
 const ALL = "Todos";
 const tabs = [ALL, ...Array.from(new Set(courses.map((c) => c.type)))];
@@ -13,8 +15,6 @@ const pad = (n: number) => String(n).padStart(2, "0");
 
 type Order = "newest" | "oldest";
 
-// Transforma a data em um número para comparar: ano primeiro, depois o mês.
-// "06/2026" vira 202606 e "27/09/2026" vira 202609. Sem data (ou inválida): null.
 const dateKey = (date?: string) => {
   if (!date) return null;
   const parts = date.split("/").map(Number);
@@ -24,28 +24,12 @@ const dateKey = (date?: string) => {
   return year * 100 + (month || 0);
 };
 
-function Thumb({ course }: { course: Course }) {
-  const style = {
-    "--h": course.hue,
-    "--shot": course.image ? `url(${course.image})` : "none",
-  } as CSSProperties;
-
-  return (
-    <span className="ct-thumb" style={style} aria-hidden="true">
-      {!course.image && <Award size={44} strokeWidth={1.5} />}
-    </span>
-  );
-}
-
 export default function Certificates() {
   const [tab, setTab] = useState(ALL);
-  // começa do mais novo para o mais velho
   const [order, setOrder] = useState<Order>("newest");
 
   const visible = tab === ALL ? courses : courses.filter((c) => c.type === tab);
 
-  // ordena por data; certificados sem data vão para o fim, nas duas ordens.
-  // Datas iguais mantêm a ordem em que aparecem na lista.
   const sorted = [...visible].sort((a, b) => {
     const ka = dateKey(a.date);
     const kb = dateKey(b.date);
@@ -56,42 +40,39 @@ export default function Certificates() {
   });
 
   return (
-    <div className="ct">
-      <main className="ct-main">
-        <div className="ct-bar">
-          <nav className="ct-crumbs" aria-label="Você está em">
-            <Link to="/">Home</Link> /{" "}
-            <span aria-current="page">Certificados e Cursos_</span>
-          </nav>
-          <span
-            className="ct-count"
-            aria-label={`${visible.length} de ${courses.length} cursos`}
-          >
+    <div className="flex flex-1 flex-col bg-main font-sans text-fg transition-colors duration-250">
+      <main className="flex flex-1 flex-col px-[clamp(1rem,3vw,2.5rem)] pt-4 pb-10">
+        <div className="flex items-baseline justify-between gap-4 text-[clamp(0.8rem,0.9vw,1rem)] font-semibold tracking-[0.08em] uppercase">
+          <Breadcrumb current="Certificados e Cursos" />
+          <span aria-label={`${visible.length} de ${courses.length} cursos`}>
             {pad(visible.length)} / {pad(courses.length)}
           </span>
         </div>
 
-        <div className="ct-tabs">
+        <div className="mt-3 flex flex-wrap gap-x-8 border-b border-line">
           {tabs.map((name) => (
-            <button
+            <TabButton
               key={name}
-              type="button"
-              className="ct-tab"
-              aria-pressed={tab === name}
+              pressed={tab === name}
               onClick={() => setTab(name)}
             >
               {name}
-            </button>
+            </TabButton>
           ))}
 
+          {/* ordem por data, no canto direito da linha das abas */}
           <button
             type="button"
-            className="ct-sort"
+            className="ml-auto inline-flex cursor-pointer items-center gap-[0.45rem] self-center border border-line bg-transparent px-[0.8rem] py-[0.4rem] text-[clamp(0.72rem,0.8vw,0.9rem)] font-semibold tracking-[0.06em] text-secondary uppercase transition-colors duration-150 hover:border-secondary focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-secondary"
             aria-label={`Ordenar por data: ${
-              order === "newest" ? "mais novos primeiro" : "mais antigos primeiro"
+              order === "newest"
+                ? "mais novos primeiro"
+                : "mais antigos primeiro"
             }. Clique para inverter.`}
             onClick={() =>
-              setOrder((current) => (current === "newest" ? "oldest" : "newest"))
+              setOrder((current) =>
+                current === "newest" ? "oldest" : "newest",
+              )
             }
           >
             {order === "newest" ? "Mais novos" : "Mais antigos"}
@@ -103,28 +84,36 @@ export default function Certificates() {
           </button>
         </div>
 
-        <h1 className="ct-sr">Certificados e Cursos</h1>
+        <h1 className="sr-only">Certificados e Cursos</h1>
 
-        <ul className="ct-grid">
+        <ul className="mx-auto mt-7 grid w-[min(100%,1180px)] grid-cols-1 gap-4 min-[700px]:grid-cols-2 min-[1100px]:grid-cols-3 min-[1100px]:gap-[1.1rem]">
           {sorted.map((course) => (
-            <li key={course.title} className="ct-card">
-              <div className="ct-top">
-                <div className="ct-text">
-                  <span className="ct-label">{course.type}</span>
-                  <h2 className="ct-title">{course.title}</h2>
-                </div>
-
-                <Thumb course={course} />
-
-                <div className="ct-foot">
-                  {course.issuer && (
-                    <span className="ct-meta">{course.issuer}</span>
-                  )}
-                  {course.date && (
-                    <span className="ct-date">{course.date}</span>
-                  )}
-                </div>
-              </div>
+            // cartão só de exibição: não abre e não leva a lugar nenhum
+            <li key={course.title} className="flex flex-col border border-line">
+              <CardHead
+                label={course.type}
+                title={course.title}
+                thumb={
+                  <CardThumb hue={course.hue} image={course.image}>
+                    {!course.image && <Award size={44} strokeWidth={1.5} />}
+                  </CardThumb>
+                }
+                foot={
+                  <>
+                    {course.issuer && (
+                      <span className="text-[0.7rem] tracking-[0.05em] uppercase">
+                        {course.issuer}
+                      </span>
+                    )}
+                    {/* a data fica sempre à direita, mesmo sem emissor */}
+                    {course.date && (
+                      <span className="ml-auto text-[0.72rem] font-semibold tracking-[0.08em] text-cool">
+                        {course.date}
+                      </span>
+                    )}
+                  </>
+                }
+              />
             </li>
           ))}
         </ul>

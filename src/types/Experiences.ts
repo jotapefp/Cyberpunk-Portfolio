@@ -19,7 +19,7 @@ export const experiences: Item[] = [
     description:
       "Prestei suporte técnico em informática, atuando em problemas de hardware e software. Auxiliei na manutenção e organização de sistemas e equipamentos, identificando e corrigindo falhas",
     tone: "yellow",
-    image: "../public/ToqueCampainha.png",
+    image: "/ImageIcons/ToqueCampainha.webp",
   },
   {
     period: "12/2024 – 10/2026",
@@ -29,7 +29,7 @@ export const experiences: Item[] = [
     description:
       "Executei procedimentos administrativos com foco em organização, controle e disciplina. Contribuí com a comunicação eficaz em rotinas operacionais, apoiando diferentes áreas da empresa",
     tone: "cyan",
-    image: "../public/Tekno.png",
+    image: "/ImageIcons/Tekno.webp",
   },
   {
     period: "10/2026 – ????",
@@ -39,6 +39,6 @@ export const experiences: Item[] = [
     description:
       "A procura de um estágio na área de TI, voltado para o desenvolvimento web/software",
     tone: "red",
-    image: "../public/BuscaEstagio.png",
+    image: "/ImageIcons/BuscaEstagio.webp",
   },
 ];

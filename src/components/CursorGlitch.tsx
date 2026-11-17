@@ -1,5 +1,4 @@
 import { useEffect, useRef } from "react";
-import "./CursorGlitch.css";
 
 /* Alcance do Raio */
 const RADIUS = 55;
@@ -12,6 +11,19 @@ const isChromium =
 const FALLBACK_TARGETS = "[data-glitch], h1, h2, h3, p, nav a, button, li";
 
 const rand = (min: number, max: number) => min + Math.random() * (max - min);
+
+/* Elementos atingidos ganham animate-glitch (veja o main.css) */
+const hit = (el: HTMLElement, intensity: number) => {
+  el.classList.add("animate-glitch");
+  el.style.setProperty("--a", `${(intensity * 4).toFixed(2)}px`);
+  el.style.setProperty("--m", `${(intensity * 5).toFixed(2)}px`);
+};
+
+const release = (el: HTMLElement) => {
+  el.classList.remove("animate-glitch");
+  el.style.removeProperty("--a");
+  el.style.removeProperty("--m");
+};
 
 export default function CursorGlitch() {
   const lensRef = useRef<HTMLDivElement>(null);
@@ -48,10 +60,9 @@ export default function CursorGlitch() {
     };
 
     const clearHits = () => {
-      document.querySelectorAll<HTMLElement>(".cg-hit").forEach((el) => {
-        el.classList.remove("cg-hit");
-        el.style.removeProperty("--cg-i");
-      });
+      document
+        .querySelectorAll<HTMLElement>(".animate-glitch")
+        .forEach(release);
     };
 
     const update = () => {
@@ -64,13 +75,8 @@ export default function CursorGlitch() {
         const dy = Math.max(r.top - y, 0, y - r.bottom);
         const d = Math.hypot(dx, dy);
 
-        if (d < RADIUS) {
-          el.classList.add("cg-hit");
-          el.style.setProperty("--cg-i", (1 - d / RADIUS).toFixed(2));
-        } else if (el.classList.contains("cg-hit")) {
-          el.classList.remove("cg-hit");
-          el.style.removeProperty("--cg-i");
-        }
+        if (d < RADIUS) hit(el, 1 - d / RADIUS);
+        else if (el.classList.contains("animate-glitch")) release(el);
       });
     };
 
@@ -85,7 +91,7 @@ export default function CursorGlitch() {
 
       if (isChromium) {
         lens.style.transform = `translate3d(${x - BOX / 2}px, ${y - BOX / 2}px, 0)`;
-        lens.classList.add("on");
+        lens.toggleAttribute("data-on", true);
         if (!active) {
           tick();
           timer = window.setInterval(tick, 90);
@@ -98,7 +104,7 @@ export default function CursorGlitch() {
 
     const onLeave = () => {
       active = false;
-      lens.classList.remove("on");
+      lens.toggleAttribute("data-on", false);
       window.clearInterval(timer);
       clearHits();
     };
@@ -120,7 +126,7 @@ export default function CursorGlitch() {
   return (
     <>
       <svg
-        className="cg-defs"
+        className="pointer-events-none absolute size-0"
         width="0"
         height="0"
         aria-hidden="true"
@@ -182,10 +188,11 @@ export default function CursorGlitch() {
         </filter>
       </svg>
 
+      {/* lente que distorce o que está atrás do cursor; data-on liga o brilho */}
       <div
         ref={lensRef}
-        className="cg-lens"
         aria-hidden="true"
+        className="pointer-events-none fixed top-0 left-0 z-9000 opacity-0 transition-opacity duration-150 will-change-transform [-webkit-backdrop-filter:url(#cg-glitch)] [backdrop-filter:url(#cg-glitch)] data-on:opacity-100 motion-reduce:hidden [@media(hover:none)]:hidden"
         style={{
           width: BOX,
           height: BOX,

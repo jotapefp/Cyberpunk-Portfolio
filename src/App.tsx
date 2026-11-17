@@ -7,9 +7,6 @@ import IntroAnimation from "./components/IntroAnimation.tsx";
 import Footer from "./components/Footer.tsx";
 import Navbar from "./components/Navbar.tsx";
 
-import "./components/IntroAnimation.css";
-
-// Coloque true para ligar a animação de entrada
 const SHOW_INTRO = false;
 
 export default function App() {
@@ -20,9 +17,9 @@ export default function App() {
       <CursorGlitch />
       {showIntro && <IntroAnimation onFinish={() => setShowIntro(false)} />}
 
-      <div className="site">
+      <div className="flex min-h-dvh flex-col">
         <Navbar />
-        <div className="site-main">
+        <div className="flex flex-1 flex-col">
           <Outlet />
         </div>
         <Footer />

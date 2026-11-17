@@ -6,7 +6,7 @@ export type Course = {
   hue: number;
   image?: string;
 };
- 
+
 export const courses: Course[] = [
   {
     title: "Ciência da Computação de Harvard no Brasil",
@@ -14,7 +14,7 @@ export const courses: Course[] = [
     issuer: "Fundação Escola",
     date: "06/2026",
     hue: 15,
-    image: "/ImageCertificate/Certificado_Havard.png",
+    image: "/ImageCertificate/Certificado_Havard.webp",
   },
   {
     title: "Programador Web em Tecnologias Front-end",
@@ -23,7 +23,7 @@ export const courses: Course[] = [
       "Instituto Federal de Educação, Ciência e Tecnologia de Minas Gerais",
     date: "10/2026",
     hue: 15,
-    image: "/ImageCertificate/Certificado_IFMG_FrontEnd.png",
+    image: "/ImageCertificate/Certificado_IFMG_FrontEnd.webp",
   },
   {
     title: "Programação Web (Básico)",
@@ -32,7 +32,7 @@ export const courses: Course[] = [
       "Instituto Federal de Educação, Ciência e Tecnologia de Minas Gerais",
     date: "10/2026",
     hue: 15,
-    image: "/ImageCertificate/Certificado_IFMG_WebBasico.png",
+    image: "/ImageCertificate/Certificado_IFMG_WebBasico.webp",
   },
   {
     title: "Programação Web (Avançado)",
@@ -41,7 +41,7 @@ export const courses: Course[] = [
       "Instituto Federal de Educação, Ciência e Tecnologia de Minas Gerais",
     date: "10/2026",
     hue: 15,
-    image: "/ImageCertificate/Certificado_IFMG_WebAvancado.png",
+    image: "/ImageCertificate/Certificado_IFMG_WebAvancado.webp",
   },
   {
     title: "JavaScript (básico)",
@@ -50,7 +50,7 @@ export const courses: Course[] = [
       "Instituto Federal de Educação, Ciência e Tecnologia de Minas Gerais",
     date: "10/2026",
     hue: 15,
-    //image: "/ImageCertificate/Certificado_IFMG_WebAvancado.png",
+    image: "/ImageCertificate/JavaScript_basico.webp",
   },
   {
     title: "JavaScript (avançado)",
@@ -59,7 +59,7 @@ export const courses: Course[] = [
       "Instituto Federal de Educação, Ciência e Tecnologia de Minas Gerais",
     date: "10/2026",
     hue: 15,
-    //image: "/ImageCertificate/Certificado_IFMG_WebAvancado.png",
+    image: "/ImageCertificate/JavaScript_avancado.webp",
   },
   {
     title: "CSS Essentials",
@@ -67,7 +67,7 @@ export const courses: Course[] = [
     issuer: "Cisco Academy",
     date: "09/2026",
     hue: 15,
-    //image: "/ImageCertificate/Certificado_IFMG_WebAvancado.png",
+    image: "/ImageCertificate/CSS_Essentials.webp",
   },
   {
     title: "HTML Essentials",
@@ -75,7 +75,7 @@ export const courses: Course[] = [
     issuer: "Cisco Academy",
     date: "09/2026",
     hue: 15,
-    //image: "/ImageCertificate/Certificado_IFMG_WebAvancado.png",
+    image: "/ImageCertificate/HTML_Essentials.webp",
   },
   {
     title: "Introdução a criação de websites com HTML5 e CSS3",
@@ -83,7 +83,7 @@ export const courses: Course[] = [
     issuer: "Digital Innovation One",
     date: "11/2020",
     hue: 15,
-    //image: "/ImageCertificate/Certificado_IFMG_WebAvancado.png",
+    image: "/ImageCertificate/Introducao_Criacao_Websites.webp",
   },
   {
     title: "Lógica de programação essencial",
@@ -91,7 +91,7 @@ export const courses: Course[] = [
     issuer: "Digital Innovation One",
     date: "11/2020",
     hue: 15,
-    //image: "/ImageCertificate/Certificado_IFMG_WebAvancado.png",
+    image: "/ImageCertificate/Logica_Programacao.webp",
   },
   {
     title: "Engenharia de Software",
@@ -99,14 +99,14 @@ export const courses: Course[] = [
     issuer: "FIAP",
     date: "10/2026",
     hue: 15,
-    //image: "/ImageCertificate/Certificado_IFMG_WebAvancado.png",
+    image: "/ImageCertificate/Engenharia_Software.webp",
   },
   {
     title: "Formação Front-end - HTML, CSS, JavaScript, React",
-    type: "Front-End",
+    type: "JavaScript",
     issuer: "Udemy",
     date: "08/2026",
     hue: 15,
-    //image: "/ImageCertificate/Certificado_IFMG_WebAvancado.png",
+    image: "/ImageCertificate/Certificado_Udemy_React_HTML_CSS.webp",
   },
 ];

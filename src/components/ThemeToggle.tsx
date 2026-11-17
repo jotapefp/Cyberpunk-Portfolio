@@ -1,13 +1,12 @@
 import { useState } from "react";
 import { Moon, Sun } from "lucide-react";
 
-import "./ThemeToggle.css";
-
 type Theme = "light" | "dark";
 
 const readTheme = (): Theme =>
   document.documentElement.dataset.theme === "dark" ? "dark" : "light";
 
+/* O tamanho acompanha a navbar: usa --nb-box e --nb-icon definidos no <header> */
 export default function ThemeToggle() {
   const [theme, setTheme] = useState<Theme>(readTheme);
 
@@ -25,22 +24,25 @@ export default function ThemeToggle() {
   return (
     <button
       type="button"
-      className="yh-theme"
       role="switch"
       aria-checked={theme === "dark"}
       aria-label="Modo escuro"
       onClick={toggle}
+      className="group relative mr-[0.4rem] flex h-[calc(var(--nb-box,1.9rem)*1.2)] w-[calc(var(--nb-box,1.9rem)*2.3)] cursor-pointer items-center justify-between rounded-[3px] border border-secondary px-2 focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-secondary xl:mr-[clamp(1rem,5vw,6.5rem)]"
     >
-      <span className="yh-theme-knob" aria-hidden="true" />
-      <Sun
-        className="yh-theme-icon yh-theme-sun"
-        size={14}
+      <span
         aria-hidden="true"
+        className="absolute inset-y-0.75 left-0.75 w-[calc(50%-3px)] rounded-xs bg-secondary transition-transform duration-200 group-aria-checked:translate-x-full motion-reduce:transition-none"
+      />
+
+      {/* o ícone sobre o botão usa a cor do fundo; o outro usa a cor de destaque */}
+      <Sun
+        aria-hidden="true"
+        className="relative z-10 size-[var(--nb-icon,0.875rem)] text-main transition-colors duration-200 group-aria-checked:text-secondary motion-reduce:transition-none"
       />
       <Moon
-        className="yh-theme-icon yh-theme-moon"
-        size={14}
         aria-hidden="true"
+        className="relative z-10 size-[var(--nb-icon,0.875rem)] text-secondary transition-colors duration-200 group-aria-checked:text-main motion-reduce:transition-none"
       />
     </button>
   );
