@@ -1,4 +1,4 @@
-type Tone = "cyan" | "yellow" | "red";
+type Tone = "cyan" | "green" | "red";
 
 type Item = {
   period: string;
@@ -18,7 +18,7 @@ export const experiences: Item[] = [
     org: "Toque a Campainha Móveis (Grupo TAC)",
     description:
       "Prestei suporte técnico em informática, atuando em problemas de hardware e software. Auxiliei na manutenção e organização de sistemas e equipamentos, identificando e corrigindo falhas",
-    tone: "yellow",
+    tone: "green",
     image: "/ImageIcons/ToqueCampainha.webp",
   },
   {

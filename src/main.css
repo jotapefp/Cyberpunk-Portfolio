@@ -1,5 +1,13 @@
 @import "tailwindcss";
 
+@font-face {
+  font-family: "SD Dystopian";
+  src: url("/fonts/sd-dystopian.otf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
 @custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
 
 /* Paleta do projeto: #f5e60a é a cor padrão nos modos claro e escuro */
@@ -14,6 +22,8 @@
   --color-icon: #ffffff;
 
   --font-sans: "Rajdhani", ui-sans-serif, system-ui, sans-serif;
+  --font-navbar:
+    "SD Dystopian", "Rajdhani", ui-sans-serif, system-ui, sans-serif;
 
   /* a Home passa a ter layout de desktop a partir de 900px (use home:) */
   --breakpoint-home: 900px;
@@ -138,7 +148,7 @@
     z-index: -1;
     pointer-events: none;
     background-color: var(--secondary);
-    opacity: 0.07;
+    opacity: 1;
     -webkit-mask-image: var(--circuit);
     mask-image: var(--circuit);
     -webkit-mask-size: 400px 400px;
@@ -246,6 +256,21 @@
     inset: 1px;
     background: var(--main);
   }
+}
+
+/*
+  Enfeite lateral estilo Cyberpunk (barras, setas, hachuras, circuitos).
+  Uso: <div className="cyber-side ..."> (o tamanho e a posição vêm de quem usa).
+  É uma máscara repetida na vertical, pintada com a cor secundária do tema.
+*/
+@utility cyber-side {
+  background-color: var(--secondary);
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 240 800'%3E%3Cg fill='black'%3E%3Cpolygon points='150,0 174,0 174,250 198,274 198,520 174,544 174,800 150,800 150,560 126,536 126,274 150,250'/%3E%3Cpath d='M60 40L88 76H72V150H48V76H32Z'/%3E%3Cpath d='M60 660L88 696H72V770H48V696H32Z'/%3E%3Ccircle cx='24' cy='300' r='4'/%3E%3Ccircle cx='24' cy='316' r='4'/%3E%3Ccircle cx='24' cy='332' r='4'/%3E%3Ccircle cx='24' cy='500' r='4'/%3E%3Ccircle cx='24' cy='516' r='4'/%3E%3Ccircle cx='24' cy='532' r='4'/%3E%3Ccircle cx='24' cy='548' r='4'/%3E%3Ccircle cx='36' cy='386' r='6'/%3E%3Ccircle cx='204' cy='336' r='6'/%3E%3Ccircle cx='76' cy='626' r='6'/%3E%3C/g%3E%3Cg fill='none' stroke='black' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 180V230L36 254V380'/%3E%3Cpath d='M222 120V200L204 218V330'/%3E%3Cpath d='M100 420V470L76 494V620'/%3E%3Crect x='20' y='440' width='44' height='28' rx='6'/%3E%3Cpath d='M96 150L114 138M96 162L114 150M96 174L114 162M96 186L114 174M96 580L114 568M96 592L114 580M96 604L114 592M96 616L114 604'/%3E%3C/g%3E%3C/svg%3E");
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 240 800'%3E%3Cg fill='black'%3E%3Cpolygon points='150,0 174,0 174,250 198,274 198,520 174,544 174,800 150,800 150,560 126,536 126,274 150,250'/%3E%3Cpath d='M60 40L88 76H72V150H48V76H32Z'/%3E%3Cpath d='M60 660L88 696H72V770H48V696H32Z'/%3E%3Ccircle cx='24' cy='300' r='4'/%3E%3Ccircle cx='24' cy='316' r='4'/%3E%3Ccircle cx='24' cy='332' r='4'/%3E%3Ccircle cx='24' cy='500' r='4'/%3E%3Ccircle cx='24' cy='516' r='4'/%3E%3Ccircle cx='24' cy='532' r='4'/%3E%3Ccircle cx='24' cy='548' r='4'/%3E%3Ccircle cx='36' cy='386' r='6'/%3E%3Ccircle cx='204' cy='336' r='6'/%3E%3Ccircle cx='76' cy='626' r='6'/%3E%3C/g%3E%3Cg fill='none' stroke='black' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 180V230L36 254V380'/%3E%3Cpath d='M222 120V200L204 218V330'/%3E%3Cpath d='M100 420V470L76 494V620'/%3E%3Crect x='20' y='440' width='44' height='28' rx='6'/%3E%3Cpath d='M96 150L114 138M96 162L114 150M96 174L114 162M96 186L114 174M96 580L114 568M96 592L114 580M96 604L114 592M96 616L114 604'/%3E%3C/g%3E%3C/svg%3E");
+  -webkit-mask-repeat: repeat-y;
+  mask-repeat: repeat-y;
+  -webkit-mask-size: 100% auto;
+  mask-size: 100% auto;
 }
 
 /*
