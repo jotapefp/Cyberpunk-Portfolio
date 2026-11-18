@@ -1,29 +1,25 @@
 import { experiences } from "../types/Experiences.ts";
-
-/* Components */
 import Breadcrumb from "../components/Breadcrumb.tsx";
 
 type Tone = (typeof experiences)[number]["tone"];
 
-/* Cores de cada cartão (card) e da barra de data (bar).
-   No tema claro o cartão amarelo ficaria invisível no fundo, então ele vira escuro. */
 const tones: Record<Tone, { card: string; bar: string }> = {
   green: {
-    card: "bg-[#50ff32] text-black dark:text-white",
-    bar: "bg-[#2fcc16] text-black dark:bg-[#1f8a0e] dark:text-white",
+    card: "bg-[#1f8a0e] text-black dark:text-white",
+    bar: "bg-[#008029] text-black dark:bg-[#004700] dark:text-white",
   },
   cyan: {
     card: "bg-[linear-gradient(135deg,#1c7d92_0%,#1c7d92_55%,#0e5d73_100%)] text-black dark:text-white",
     bar: "bg-[#166374] text-black dark:bg-[#0a4254] dark:text-white",
   },
   red: {
-    card: "bg-[#ff1a44] text-black dark:text-white",
+    card: "bg-[#D10026] text-black dark:text-white",
     bar: "bg-[#7a1b0c] text-black dark:bg-[#6b0c1e] dark:text-white",
   },
 };
 
 const deco =
-  "cyber-side pointer-events-none absolute inset-y-0 hidden w-[clamp(6rem,calc((100vw_-_1060px)/2),18rem)] opacity-90 xl:block";
+  "cyber-side pointer-events-none absolute inset-y-0 hidden w-[clamp(6rem,calc((100vw_-_1060px)/2),18rem)] xl:block";
 
 export default function Experience() {
   return (
@@ -33,7 +29,6 @@ export default function Experience() {
 
         <h1 className="sr-only">Experiência</h1>
 
-        {/* wrapper da linha do tempo + enfeites laterais */}
         <div className="relative mt-[clamp(3rem,8vh,5rem)]">
           <div className={`${deco} left-0`} aria-hidden="true" />
           <div className={`${deco} right-0 -scale-x-100`} aria-hidden="true" />
@@ -47,19 +42,18 @@ export default function Experience() {
                   key={`${item.period}-${item.title}`}
                   className="relative pl-(--xp-gutter)"
                 >
-                  {/* bolinha na linha, alinhada com o meio da barra de data */}
                   <span
                     className="absolute bottom-[calc(var(--xp-bar-h)/2)] left-[0.6rem] size-[0.95rem] -translate-x-1/2 translate-y-1/2 rounded-full bg-fg shadow-[0_0_0_0.3rem_var(--color-black)]"
                     aria-hidden="true"
                   />
-                  {/* tracejado da bolinha até a barra de data */}
+
                   <span
-                    className="absolute bottom-[calc(var(--xp-bar-h)/2)] left-[0.6rem] w-[calc(var(--xp-gutter)_-_0.6rem)] translate-y-1/2 border-t-[3px] border-dotted border-fg"
+                    className="absolute bottom-[calc(var(--xp-bar-h)/2)] left-[0.6rem] w-[calc(var(--xp-gutter)-0.6rem)] translate-y-1/2 border-t-[3px] border-dotted border-fg"
                     aria-hidden="true"
                   />
 
                   <article
-                    className={`relative min-h-[clamp(13rem,22vw,16rem)] rounded-[14px] px-[1.1rem] pt-5 pb-[calc(var(--xp-bar-h)_+_1rem)] sm:px-7 sm:pt-6 sm:pb-[calc(var(--xp-bar-h)_+_1.25rem)] ${tone.card} ${item.image ? "pr-[40%] sm:pr-[42%]" : ""}`}
+                    className={`relative min-h-[clamp(13rem,22vw,16rem)] rounded-[14px] px-[1.1rem] pt-5 pb-[calc(var(--xp-bar-h)+1rem)] sm:px-7 sm:pt-6 sm:pb-[calc(var(--xp-bar-h)+1.25rem)] ${tone.card} ${item.image ? "pr-[40%] sm:pr-[42%]" : ""}`}
                   >
                     <span className="text-[0.72rem] font-bold tracking-[0.12em] uppercase opacity-85">
                       {item.kind}
@@ -70,7 +64,7 @@ export default function Experience() {
                     <p className="m-0 text-[clamp(0.95rem,1.3vw,1.15rem)] font-semibold opacity-90">
                       {item.org}
                     </p>
-                    <p className="mt-[0.6rem] max-w-[34rem] text-[clamp(0.85rem,1.05vw,1rem)] leading-[1.45] opacity-90">
+                    <p className="mt-[0.6rem] max-w-136 text-[clamp(0.85rem,1.05vw,1rem)] leading-[1.45] opacity-90">
                       {item.description}
                     </p>
 
@@ -82,7 +76,6 @@ export default function Experience() {
                       />
                     )}
 
-                    {/* barra de data no canto de baixo */}
                     <p
                       className={`absolute bottom-0 left-0 m-0 flex h-(--xp-bar-h) w-[68%] items-center rounded-bl-[14px] px-[1.1rem] text-[clamp(1.4rem,2.4vw,2rem)] font-bold tracking-[0.02em] sm:w-[min(62%,26rem)] sm:px-7 ${tone.bar}`}
                     >

@@ -93,7 +93,7 @@
   --line: rgba(0, 0, 0, 0.2);
   --muted: color-mix(in srgb, var(--fg) 55%, transparent);
   --hot: #c4122f;
-  --cool: #00606a;
+  --cool: var(--hot);
 
   /* recorte de cantos dos quadrados (ícones de tecnologia, GitHub, LinkedIn) */
   --cut: polygon(0 0, 76% 0, 100% 24%, 100% 100%, 24% 100%, 0 76%);

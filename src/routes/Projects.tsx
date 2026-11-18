@@ -32,7 +32,7 @@ function ProjectLink({
       target="_blank"
       rel="noreferrer"
       aria-label={label}
-      className={`group/link relative z-1 inline-flex items-center gap-[0.4rem] text-[0.72rem] font-semibold tracking-[0.08em] text-cool uppercase underline-offset-[0.25em] hover:underline focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-secondary ${className}`}
+      className={`group/link relative z-1 inline-flex items-center gap-[0.4rem] text-[0.82rem] font-semibold tracking-[0.08em] text-cool uppercase underline-offset-[0.25em] hover:underline focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-secondary ${className}`}
     >
       {text}
       <ArrowRight
@@ -159,7 +159,7 @@ export default function Projects() {
                   foot={
                     <>
                       {project.stack && (
-                        <span className="text-[0.7rem] tracking-[0.05em] uppercase">
+                        <span className="text-[0.8rem] tracking-[0.05em] uppercase">
                           {project.stack}
                         </span>
                       )}
@@ -170,7 +170,7 @@ export default function Projects() {
 
                 {isOpen && (
                   <>
-                    <div className="flex flex-1 flex-col justify-between gap-4 px-5 pt-5 pb-7 text-[clamp(0.85rem,1vw,0.95rem)] leading-[1.5] text-cool">
+                    <div className="flex flex-1 flex-col justify-between gap-4 px-5 pt-5 pb-7 text-[clamp(0.95rem,1.1vw,1.05rem)] leading-[1.5] text-cool">
                       <p className="m-0">{project.description}</p>
                       <div className="flex flex-wrap gap-x-6 gap-y-3">
                         {github}
@@ -185,7 +185,7 @@ export default function Projects() {
                     </div>
                     {/* número no canto cortado */}
                     <span
-                      className="absolute right-[0.55rem] bottom-[0.35rem] text-[0.7rem] font-semibold text-secondary"
+                      className="absolute right-[0.35rem] bottom-[0.2rem] text-[0.8rem] font-semibold text-secondary"
                       aria-hidden="true"
                     >
                       {pad(index + 1)}

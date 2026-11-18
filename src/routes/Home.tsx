@@ -26,8 +26,8 @@ export default function Home() {
         aria-hidden="true"
       />
 
-      <div className={`absolute z-3 grid grid-rows-[auto_1fr_auto] ${inset}`}>
-        <div className="relative flex flex-col px-4 pt-[clamp(1.5rem,8dvh,3rem)] pb-5 home:grid home:grid-cols-[minmax(0,31%)_minmax(0,1fr)_minmax(0,22%)] home:p-[4%_4.5%_4.5%]">
+      <div className={`absolute z-3 grid grid-rows-1 ${inset}`}>
+        <div className="relative flex h-full flex-col px-4 pt-[clamp(1.5rem,8dvh,3rem)] pb-5 home:grid home:grid-cols-[minmax(0,31%)_minmax(0,1fr)_minmax(0,22%)] home:px-[4.5%] home:pt-[clamp(2rem,11dvh,7rem)] home:pb-[clamp(1.5rem,7dvh,4.5rem)]">
           <img
             className="pointer-events-none absolute right-0 bottom-0 z-0 h-[min(55%,100vw)] w-auto select-none home:right-auto home:left-[51%] home:h-[min(100%,56vw)] home:-translate-x-1/2"
             src="/ImageIcons/jp.png"
@@ -46,9 +46,10 @@ export default function Home() {
               aria-hidden="true"
             />
 
-            <p className="m-0 max-w-60 text-[0.78rem] leading-[1.35] font-semibold tracking-[0.03em] uppercase home:max-w-[17rem] home:text-[clamp(0.62rem,0.72vw,0.78rem)]">
-              Estudante de Ciência da Computação em busca de estágio em
-              desenvolvimento web
+            <p className="m-0 max-w-72 text-[0.9rem] leading-[1.35] font-semibold tracking-[0.03em] uppercase home:max-w-[22rem] home:text-[clamp(0.72rem,0.85vw,0.95rem)]">
+              Desenvolvedor Web e estudante de Ciência da Computação. Desenvolvo
+              aplicações web com React, TypeScript, JavaScript, HTML5, CSS3,
+              Tailwind CSS e Node.js
             </p>
 
             <Link

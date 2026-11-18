@@ -6,6 +6,9 @@ import {
   TbBrandReact,
   TbBrandTypescript,
   TbBrandGit,
+  TbBrandTailwind,
+  TbBrandGithub,
+  TbBrandNodejs,
 } from "react-icons/tb";
 
 export const icons: { name: string; Icon: IconType; color: string }[] = [
@@ -13,14 +16,18 @@ export const icons: { name: string; Icon: IconType; color: string }[] = [
   { name: "CSS3", Icon: TbBrandCss3, color: "#2d9bf0" },
   { name: "JavaScript", Icon: TbBrandJavascript, color: "#f7df1e" },
   { name: "TypeScript", Icon: TbBrandTypescript, color: "#3a86d8" },
-  { name: "React.js", Icon: TbBrandReact, color: "#61dafb" },
+  { name: "React.js", Icon: TbBrandReact, color: "#0081A3" },
   { name: "Git", Icon: TbBrandGit, color: "#f1502f" },
+  { name: "Taildwind CSS", Icon: TbBrandTailwind, color: "#38bdf8" },
+  { name: "GitHub", Icon: TbBrandGithub, color: "#fff" },
+  { name: "Node JS", Icon: TbBrandNodejs, color: "#339933" },
 ];
 
 export const skills: { name: string; level: number; note?: string }[] = [
   { name: "Inglês", level: 85, note: "Avançado" },
-  { name: "Boa comunicação", level: 95 },
-  { name: "Trabalho em equipe", level: 95 },
+  { name: "Boa comunicação", level: 98 },
+  { name: "Trabalho em equipe", level: 97 },
+  { name: "Rápido Aprendizagem", level: 96 },
 ];
 
 export type Tab = "icons" | "skills";
