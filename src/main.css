@@ -8,6 +8,14 @@
   font-display: swap;
 }
 
+@font-face {
+  font-family: "Roguepunk";
+  src: url("/fonts/roguepunk.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
 @custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
 
 /* Paleta do projeto: #f5e60a é a cor padrão nos modos claro e escuro */
@@ -20,7 +28,7 @@
 
   /* cor dos ícones */
   --color-icon: #ffffff;
-
+  --font-title: "Roguepunk", "Rajdhani", ui-sans-serif, system-ui, sans-serif;
   --font-sans: "Rajdhani", ui-sans-serif, system-ui, sans-serif;
   --font-navbar:
     "SD Dystopian", "Rajdhani", ui-sans-serif, system-ui, sans-serif;

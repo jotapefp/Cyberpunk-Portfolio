@@ -1,17 +1,20 @@
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 
+/* Idioma */
+import { useLanguage } from "../i18n/LanguageContext.tsx";
+
 /* Components */
 import LanguageSelect from "./LanguageSelect.tsx";
 import ThemeToggle from "./ThemeToggle.tsx";
 
-/* Links da navbar */
+/* Links da navbar (o texto de cada um vem de i18n/translations.ts) */
 const navLinks = [
-  { label: "Sobre mim", to: "/AboutMe" },
-  { label: "Experiência", to: "/Experience" },
-  { label: "Projetos", to: "/Projects" },
-  { label: "Certificados e Cursos", to: "/Certificates" },
-];
+  { key: "about", to: "/AboutMe" },
+  { key: "experience", to: "/Experience" },
+  { key: "projects", to: "/Projects" },
+  { key: "certificates", to: "/Certificates" },
+] as const;
 
 const BRAND = "HOME";
 const GITHUB = "https://github.com/jotapefp";
@@ -52,6 +55,7 @@ const bar = "block h-[2.5px] bg-secondary";
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
   const { pathname } = useLocation();
+  const { t } = useLanguage();
 
   const isCurrent = (to: string) =>
     to !== "/" && pathname.toLowerCase() === to.toLowerCase();
@@ -70,17 +74,17 @@ export default function Navbar() {
         <nav
           id="nb-nav"
           className={`${menuOpen ? navMobileOpen : "hidden"} ${navDesktop}`}
-          aria-label="Seções do portfólio"
+          aria-label={t.nav.menuLabel}
         >
-          {navLinks.map(({ label, to }) => (
+          {navLinks.map(({ key, to }) => (
             <Link
-              key={label}
+              key={key}
               to={to}
               className={link}
               aria-current={isCurrent(to) ? "page" : undefined}
               onClick={() => setMenuOpen(false)}
             >
-              {label}
+              {t.nav[key]}
             </Link>
           ))}
         </nav>
@@ -118,7 +122,7 @@ export default function Navbar() {
           </a>
           <button
             type="button"
-            aria-label="Abrir menu"
+            aria-label={t.nav.openMenu}
             aria-expanded={menuOpen}
             aria-controls="nb-nav"
             onClick={() => setMenuOpen((open) => !open)}

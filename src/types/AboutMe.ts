@@ -25,9 +25,9 @@ export const icons: { name: string; Icon: IconType; color: string }[] = [
 
 export const skills: { name: string; level: number; note?: string }[] = [
   { name: "Inglês", level: 85, note: "Avançado" },
-  { name: "Boa comunicação", level: 98 },
-  { name: "Trabalho em equipe", level: 97 },
-  { name: "Rápido Aprendizagem", level: 96 },
+  { name: "Boa Comunicação", level: 98 },
+  { name: "Trabalho em Equipe", level: 97 },
+  { name: "Aprendizagem Rápida", level: 96 },
 ];
 
 export type Tab = "icons" | "skills";

@@ -1,5 +1,8 @@
 import { useState } from "react";
 
+/* Idioma */
+import { useLanguage } from "../i18n/LanguageContext.tsx";
+
 /* Components */
 import Breadcrumb from "../components/Breadcrumb.tsx";
 import { skills, icons, type Tab } from "../types/AboutMe.ts";
@@ -8,9 +11,6 @@ import { skills, icons, type Tab } from "../types/AboutMe.ts";
 const PHOTO = "/ImageIcons/eu.png";
 
 const NAME = "João Paulo Pinheiro";
-
-const DESCRIPTION =
-  "Sou Desenvolvedor Web e estudante de Ciência da Computação (IBMR - 4º período) com formação técnica em Informática pelo CEFET/RJ. Estou em busca de uma oportunidade de estágio em desenvolvimento web/software.";
 
 /* Estilos repetidos */
 const edge =
@@ -21,6 +21,7 @@ const tabButton =
 
 export default function AboutMe() {
   const [tab, setTab] = useState<Tab>("icons");
+  const { t } = useLanguage();
 
   const average = Math.round(
     skills.reduce((sum, skill) => sum + skill.level, 0) / skills.length,
@@ -29,7 +30,7 @@ export default function AboutMe() {
   return (
     <div className="flex flex-1 flex-col bg-main font-sans text-fg transition-colors duration-250">
       <main className="flex flex-1 flex-col px-[clamp(1rem,3vw,2.5rem)] pt-4 pb-6">
-        <Breadcrumb current="Sobre mim" />
+        <Breadcrumb current={t.nav.about} />
 
         <div className="relative m-auto w-[min(100%,1180px)]">
           <span className={`${edge} left-0`} aria-hidden="true" />
@@ -44,14 +45,14 @@ export default function AboutMe() {
               <img
                 className="pointer-events-none absolute inset-0 size-full origin-bottom scale-100 object-cover object-center select-none home:scale-135"
                 src={PHOTO}
-                alt={`Foto de ${NAME}`}
+                alt={`${t.about.photoAlt} ${NAME}`}
               />
             </div>
 
             <div className="relative z-1 flex flex-col border-t border-secondary home:border-t-0 home:border-l">
               <header className="px-11 pt-[1.1rem] pb-4 text-center home:pt-6 home:pb-[1.1rem]">
                 <span className="text-[0.75rem] font-semibold tracking-widest text-cool uppercase">
-                  Nome /
+                  {t.about.nameLabel}
                 </span>
                 <h1
                   id="ab-name"
@@ -60,7 +61,7 @@ export default function AboutMe() {
                   {NAME}
                 </h1>
                 <p className="m-0 text-[1rem] leading-[1.45] home:text-[clamp(0.72rem,0.95vw,0.85rem)]">
-                  {DESCRIPTION}
+                  {t.about.description}
                 </p>
               </header>
 
@@ -71,7 +72,7 @@ export default function AboutMe() {
                   aria-pressed={tab === "icons"}
                   onClick={() => setTab("icons")}
                 >
-                  Ferramentas
+                  {t.about.tools}
                 </button>
                 <button
                   type="button"
@@ -79,12 +80,18 @@ export default function AboutMe() {
                   aria-pressed={tab === "skills"}
                   onClick={() => setTab("skills")}
                 >
-                  Habilidades
+                  {t.about.skills}
                 </button>
               </div>
 
-              {tab === "icons" ? (
-                <ul className="m-0 grid flex-1 list-none content-start grid-cols-[repeat(auto-fill,minmax(5.6rem,1fr))] gap-x-3 gap-y-[1.4rem] p-5 home:p-6 home:pr-8 home:pb-10">
+              {/* As duas abas ocupam a mesma célula do grid: o card sempre tem a altura da mais alta */}
+              <div className="grid flex-1">
+                {/* Ferramentas */}
+                <ul
+                  className={`col-start-1 row-start-1 m-0 grid list-none content-start grid-cols-[repeat(auto-fill,minmax(5.6rem,1fr))] gap-x-3 gap-y-[1.4rem] p-5 home:p-6 home:pr-8 home:pb-10 ${
+                    tab === "icons" ? "" : "invisible"
+                  }`}
+                >
                   {icons.map(({ name, Icon, color }) => (
                     <li
                       key={name}
@@ -98,8 +105,13 @@ export default function AboutMe() {
                     </li>
                   ))}
                 </ul>
-              ) : (
-                <div className="grid flex-1 grid-cols-[1fr_auto]">
+
+                {/* Habilidades */}
+                <div
+                  className={`col-start-1 row-start-1 grid grid-cols-[1fr_auto] ${
+                    tab === "skills" ? "" : "invisible"
+                  }`}
+                >
                   <ul className="m-0 grid list-none content-start gap-[1.4rem] p-5 home:p-6">
                     {skills.map(({ name, level, note }) => (
                       <li key={name}>
@@ -122,10 +134,12 @@ export default function AboutMe() {
                             aria-valuemin={0}
                             aria-valuemax={100}
                           >
-                            <span
-                              className="absolute inset-y-0 left-0 animate-bar-fill bg-hot motion-reduce:animate-none"
-                              style={{ width: `${level}%` }}
-                            />
+                            {tab === "skills" && (
+                              <span
+                                className="absolute inset-y-0 left-0 animate-bar-fill bg-hot motion-reduce:animate-none"
+                                style={{ width: `${level}%` }}
+                              />
+                            )}
                           </span>
                           <span className="text-[0.75rem] whitespace-nowrap text-secondary">
                             <b className="font-semibold text-hot">{level}</b> /
@@ -144,11 +158,11 @@ export default function AboutMe() {
                       </b>
                     </span>
                     <span className="text-[0.7rem] font-semibold tracking-widest text-secondary uppercase">
-                      Média
+                      {t.about.average}
                     </span>
                   </div>
                 </div>
-              )}
+              </div>
             </div>
           </section>
         </div>

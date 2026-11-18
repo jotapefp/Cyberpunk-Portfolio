@@ -1,6 +1,9 @@
 import { experiences } from "../types/Experiences.ts";
 import Breadcrumb from "../components/Breadcrumb.tsx";
 
+/* Idioma */
+import { useLanguage } from "../i18n/LanguageContext.tsx";
+
 type Tone = (typeof experiences)[number]["tone"];
 
 const tones: Record<Tone, { card: string; bar: string }> = {
@@ -22,12 +25,14 @@ const deco =
   "cyber-side pointer-events-none absolute inset-y-0 hidden w-[clamp(6rem,calc((100vw_-_1060px)/2),18rem)] xl:block";
 
 export default function Experience() {
+  const { t } = useLanguage();
+
   return (
     <div className="flex flex-1 flex-col bg-main font-sans text-fg transition-colors duration-250 [--xp-bar-h:2.5rem] [--xp-gutter:2.25rem] sm:[--xp-bar-h:2.9rem] sm:[--xp-gutter:3rem]">
       <main className="flex flex-1 flex-col px-[clamp(1rem,3vw,2.5rem)] pt-4 pb-10">
-        <Breadcrumb current="Experiência" />
+        <Breadcrumb current={t.nav.experience} />
 
-        <h1 className="sr-only">Experiência</h1>
+        <h1 className="sr-only">{t.experience.heading}</h1>
 
         <div className="relative mt-[clamp(3rem,8vh,5rem)]">
           <div className={`${deco} left-0`} aria-hidden="true" />

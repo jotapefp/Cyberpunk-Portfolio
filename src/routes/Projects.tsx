@@ -2,6 +2,9 @@ import { useEffect, useState, type CSSProperties } from "react";
 import { flushSync } from "react-dom";
 import { ArrowRight } from "lucide-react";
 
+/* Idioma */
+import { useLanguage } from "../i18n/LanguageContext.tsx";
+
 /* Components */
 import Breadcrumb from "../components/Breadcrumb.tsx";
 import CardHead from "../components/CardHead.tsx";
@@ -9,7 +12,8 @@ import CardThumb from "../components/CardThumb.tsx";
 import TabButton from "../components/TabButton.tsx";
 import { projects } from "../types/Projects.ts";
 
-const ALL = "Todos";
+/* valor interno da aba "todos" (o texto mostrado vem do dicionário) */
+const ALL = "__all__";
 const tabs = [ALL, ...Array.from(new Set(projects.flatMap((p) => p.tags)))];
 
 const pad = (n: number) => String(n).padStart(2, "0");
@@ -49,6 +53,7 @@ type ViewTransitionDocument = Document & {
 };
 
 export default function Projects() {
+  const { t } = useLanguage();
   const [tab, setTab] = useState(ALL);
 
   const [open, setOpen] = useState<string | null>(null);
@@ -82,8 +87,10 @@ export default function Projects() {
     <div className="flex flex-1 flex-col bg-main font-sans text-fg transition-colors duration-250">
       <main className="flex flex-1 flex-col px-[clamp(1rem,3vw,2.5rem)] pt-4 pb-10">
         <div className="flex items-baseline justify-between gap-4 text-[clamp(0.8rem,0.9vw,1rem)] font-semibold tracking-[0.08em] uppercase">
-          <Breadcrumb current="Projetos" />
-          <span aria-label={`${visible.length} de ${projects.length} projetos`}>
+          <Breadcrumb current={t.nav.projects} />
+          <span
+            aria-label={t.projects.counter(visible.length, projects.length)}
+          >
             {pad(visible.length)} / {pad(projects.length)}
           </span>
         </div>
@@ -98,12 +105,12 @@ export default function Projects() {
                 setOpen(null);
               }}
             >
-              {name}
+              {name === ALL ? t.common.all : name}
             </TabButton>
           ))}
         </div>
 
-        <h1 className="sr-only">Projetos</h1>
+        <h1 className="sr-only">{t.projects.heading}</h1>
 
         <div className="mx-auto mt-7 grid w-[min(100%,1180px)] grid-cols-1 gap-4 min-[700px]:grid-cols-2 min-[1100px]:grid-cols-3 min-[1100px]:gap-[1.1rem]">
           {visible.map((project) => {
@@ -114,7 +121,7 @@ export default function Projects() {
               <ProjectLink
                 href={project.url}
                 text="GitHub"
-                label={`${project.title}: abrir o repositório no GitHub (nova aba)`}
+                label={t.projects.repoLabel(project.title)}
                 className={isOpen ? "" : "ml-auto"}
               />
             );
@@ -132,7 +139,7 @@ export default function Projects() {
                 }`}
               >
                 <CardHead
-                  label="Projeto"
+                  label={t.projects.label}
                   className={
                     isOpen ? "flex-none border-b border-secondary" : "flex-1"
                   }
@@ -177,8 +184,8 @@ export default function Projects() {
                         {project.urlTest && (
                           <ProjectLink
                             href={project.urlTest}
-                            text="Ver Projeto"
-                            label={`${project.title}: abrir o projeto funcionando (nova aba)`}
+                            text={t.projects.viewProject}
+                            label={t.projects.demoLabel(project.title)}
                           />
                         )}
                       </div>

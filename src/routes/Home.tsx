@@ -1,4 +1,8 @@
+import { Fragment } from "react";
 import { Link } from "react-router-dom";
+
+/* Idioma */
+import { useLanguage } from "../i18n/LanguageContext.tsx";
 
 /* Components */
 import InfoProject from "../components/InfoProject.tsx";
@@ -10,6 +14,8 @@ const inset =
   "inset-3 home:inset-x-[clamp(12px,2vw,32px)] home:inset-y-[clamp(12px,2.2vh,24px)]";
 
 export default function Home() {
+  const { t } = useLanguage();
+
   return (
     <section className="relative min-h-[max(100dvh,620px)] overflow-hidden bg-main text-secondary transition-colors duration-250">
       {/* camadas: linhas < moldura < personagem < conteúdo */}
@@ -36,9 +42,13 @@ export default function Home() {
           />
 
           <div className="relative z-1 flex flex-col items-start home:col-start-1">
-            <h1 className="m-0 text-[clamp(2.8rem,15vw,4.5rem)] leading-[1.12] font-medium tracking-[0.015em] uppercase home:text-[clamp(2.6rem,4.9vw,6rem)] home:whitespace-nowrap">
-              <span className="block">Seja</span>
-              <span className="block">Bem-Vindo</span>
+            <h1 className="font-title m-0 text-[clamp(2.2rem,12vw,3.6rem)] leading-[1.12] font-medium tracking-[0.015em] uppercase home:text-[clamp(2.1rem,3.9vw,4.8rem)] home:whitespace-nowrap">
+              {t.home.titleLines.map((line, i) => (
+                <Fragment key={line}>
+                  {i > 0 && <br />}
+                  {line}
+                </Fragment>
+              ))}
             </h1>
 
             <span
@@ -47,21 +57,19 @@ export default function Home() {
             />
 
             <p className="m-0 max-w-72 text-[0.9rem] leading-[1.35] font-semibold tracking-[0.03em] uppercase home:max-w-[22rem] home:text-[clamp(0.72rem,0.85vw,0.95rem)]">
-              Desenvolvedor Web e estudante de Ciência da Computação. Desenvolvo
-              aplicações web com React, TypeScript, JavaScript, HTML5, CSS3,
-              Tailwind CSS e Node.js
+              {t.home.description}
             </p>
 
             <Link
               to="/Projects"
               className="mt-[1.4rem] bg-cta px-[2.1rem] py-[0.85rem] text-[0.85rem] font-bold tracking-[0.05em] text-white uppercase no-underline transition-colors duration-150 [clip-path:polygon(0_0,93%_0,100%_30%,100%_100%,0_100%)] hover:bg-secondary hover:text-main focus-visible:bg-secondary focus-visible:text-main focus-visible:outline-none"
             >
-              Ver projetos
+              {t.home.cta}
             </Link>
 
             <ul
               className="mt-auto flex list-none flex-wrap gap-[clamp(0.4rem,0.8vw,0.7rem)] p-0 pt-6 home:pt-0"
-              aria-label="Tecnologias"
+              aria-label={t.home.stackLabel}
             >
               {stack.map((tech) => (
                 <li
