@@ -53,7 +53,7 @@ type ViewTransitionDocument = Document & {
 };
 
 export default function Projects() {
-  const { t } = useLanguage();
+  const { t, lang } = useLanguage();
   const [tab, setTab] = useState(ALL);
 
   const [open, setOpen] = useState<string | null>(null);
@@ -178,7 +178,7 @@ export default function Projects() {
                 {isOpen && (
                   <>
                     <div className="flex flex-1 flex-col justify-between gap-4 px-5 pt-5 pb-7 text-[clamp(0.95rem,1.1vw,1.05rem)] leading-[1.5] text-cool">
-                      <p className="m-0">{project.description}</p>
+                      <p className="m-0">{project.description[lang]}</p>
                       <div className="flex flex-wrap gap-x-6 gap-y-3">
                         {github}
                         {project.urlTest && (

@@ -25,7 +25,7 @@ const deco =
   "cyber-side pointer-events-none absolute inset-y-0 hidden w-[clamp(6rem,calc((100vw_-_1060px)/2),18rem)] xl:block";
 
 export default function Experience() {
-  const { t } = useLanguage();
+  const { t, lang } = useLanguage();
 
   return (
     <div className="flex flex-1 flex-col bg-main font-sans text-fg transition-colors duration-250 [--xp-bar-h:2.5rem] [--xp-gutter:2.25rem] sm:[--xp-bar-h:2.9rem] sm:[--xp-gutter:3rem]">
@@ -44,7 +44,7 @@ export default function Experience() {
 
               return (
                 <li
-                  key={`${item.period}-${item.title}`}
+                  key={`${item.period}-${item.title.pt}`}
                   className="relative pl-(--xp-gutter)"
                 >
                   <span
@@ -61,16 +61,16 @@ export default function Experience() {
                     className={`relative min-h-[clamp(13rem,22vw,16rem)] rounded-[14px] px-[1.1rem] pt-5 pb-[calc(var(--xp-bar-h)+1rem)] sm:px-7 sm:pt-6 sm:pb-[calc(var(--xp-bar-h)+1.25rem)] ${tone.card} ${item.image ? "pr-[40%] sm:pr-[42%]" : ""}`}
                   >
                     <span className="text-[0.72rem] font-bold tracking-[0.12em] uppercase opacity-85">
-                      {item.kind}
+                      {item.kind[lang]}
                     </span>
                     <h2 className="mt-1 mb-[0.15rem] text-[clamp(1.5rem,2.6vw,2.2rem)] leading-[1.1] font-semibold">
-                      {item.title}
+                      {item.title[lang]}
                     </h2>
                     <p className="m-0 text-[clamp(0.95rem,1.3vw,1.15rem)] font-semibold opacity-90">
                       {item.org}
                     </p>
                     <p className="mt-[0.6rem] max-w-136 text-[clamp(0.85rem,1.05vw,1rem)] leading-[1.45] opacity-90">
-                      {item.description}
+                      {item.description[lang]}
                     </p>
 
                     {item.image && (

@@ -4,6 +4,13 @@ const pt = {
   common: {
     all: "Todos",
   },
+  footer: {
+    credit: "Desenvolvido por João Paulo Pinheiro",
+  },
+  info: {
+    project: "Projeto em destaque",
+    certificate: "Certificado",
+  },
   nav: {
     about: "Sobre mim",
     experience: "Experiência",
@@ -61,6 +68,13 @@ const pt = {
 const en: typeof pt = {
   common: {
     all: "All",
+  },
+  footer: {
+    credit: "Developed by João Paulo Pinheiro",
+  },
+  info: {
+    project: "Featured project",
+    certificate: "Certificate",
   },
   nav: {
     about: "About me",

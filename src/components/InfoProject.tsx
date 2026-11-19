@@ -1,24 +1,27 @@
-import { useEffect, useState, type CSSProperties } from "react";
+import { useEffect, useMemo, useState, type CSSProperties } from "react";
 import { Link } from "react-router-dom";
 
 import { FolderGit2, GraduationCap, type LucideIcon } from "lucide-react";
 
-import { content, type Kind } from "../types/InfoProject.ts";
+/* Idioma */
+import { useLanguage } from "../i18n/LanguageContext.tsx";
+
+import { getContent, type Kind } from "../types/InfoProject.ts";
 
 /* Tempo de tela */
 const INTERVAL_MS = 5000;
 const kinds: Kind[] = ["project", "certificate"];
 
-const meta: Record<Kind, { label: string; to: string; Icon: LucideIcon }> = {
-  project: { label: "Projeto em destaque", to: "/Projects", Icon: FolderGit2 },
-  certificate: {
-    label: "Certificado",
-    to: "/Certificates",
-    Icon: GraduationCap,
-  },
+/* o texto do rótulo vem do dicionário (t.info) */
+const meta: Record<Kind, { to: string; Icon: LucideIcon }> = {
+  project: { to: "/Projects", Icon: FolderGit2 },
+  certificate: { to: "/Certificates", Icon: GraduationCap },
 };
 
 export default function InfoProject() {
+  const { t, lang } = useLanguage();
+  const content = useMemo(() => getContent(lang), [lang]);
+
   const [step, setStep] = useState(0);
   const [paused, setPaused] = useState(false);
 
@@ -31,7 +34,8 @@ export default function InfoProject() {
   const kind = kinds[step % kinds.length];
   const list = content[kind];
   const item = list[Math.floor(step / kinds.length) % list.length];
-  const { label, to, Icon } = meta[kind];
+  const { to, Icon } = meta[kind];
+  const label = t.info[kind];
 
   /* só a imagem (ou o degradê de cor, se não houver imagem) */
   const background: CSSProperties = {

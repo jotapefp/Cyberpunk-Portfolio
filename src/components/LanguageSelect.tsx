@@ -1,13 +1,18 @@
 import { useLanguage } from "../i18n/LanguageContext.tsx";
 
+/*
+  Tamanho do botão (mexa aqui para aumentar ou diminuir):
+  o texto usa o mesmo tamanho dos links da navbar. As setas e o espaçamento
+  são em "em", então acompanham o tamanho do texto automaticamente.
+*/
 const button =
-  "mr-[0.6rem] inline-flex cursor-pointer items-center gap-[0.45em] border-0 bg-transparent px-[0.1rem] py-[0.3rem] " +
-  "text-[0.9rem] font-bold tracking-[0.06em] text-secondary " +
+  "mr-[0.6rem] inline-flex cursor-pointer items-center gap-[0.5em] border-0 bg-transparent px-2 py-[0.3rem] " +
+  "text-[1.1rem] font-bold tracking-[0.06em] text-secondary xl:text-[clamp(1rem,1.15vw,1.3rem)] " +
   "focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-secondary";
 
 /* triângulo ao lado do código */
 const arrow =
-  "h-0 w-0 border-y-[0.26em] border-l-[0.38em] border-y-transparent border-l-current opacity-60";
+  "h-0 w-0 border-y-[0.3em] border-l-[0.45em] border-y-transparent border-l-current opacity-60";
 
 export default function LanguageSelect() {
   const { t, toggleLang } = useLanguage();

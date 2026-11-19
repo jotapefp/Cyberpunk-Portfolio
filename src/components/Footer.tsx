@@ -1,3 +1,6 @@
+/* Idioma */
+import { useLanguage } from "../i18n/LanguageContext.tsx";
+
 /* faixa de fundo sólido na largura toda: esconde as trilhas de circuito atrás do footer */
 const wrapper = "relative flow-root bg-main";
 
@@ -12,10 +15,12 @@ const text =
   "px-2 py-[0.3rem] text-center text-sm font-normal tracking-[0.06em] text-secondary uppercase xl:py-[0.2rem] xl:text-[clamp(0.8rem,0.9vw,1rem)]";
 
 export default function Footer() {
+  const { t } = useLanguage();
+
   return (
     <div className={wrapper}>
       <footer className={footer}>
-        <p className={text}>Desenvolvido por João Paulo Pinheiro &copy; 2026</p>
+        <p className={text}>{t.footer.credit} &copy; 2026</p>
       </footer>
     </div>
   );

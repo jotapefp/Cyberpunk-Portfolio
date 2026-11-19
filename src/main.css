@@ -2,7 +2,7 @@
 
 @font-face {
   font-family: "SD Dystopian";
-  src: url("/fonts/sd-dystopian.otf") format("opentype");
+  src: url("/fonts/sd-dystopian.woff2") format("woff2");
   font-weight: normal;
   font-style: normal;
   font-display: swap;
@@ -10,7 +10,7 @@
 
 @font-face {
   font-family: "Roguepunk";
-  src: url("/fonts/roguepunk.ttf") format("truetype");
+  src: url("/fonts/roguepunk.woff2") format("woff2");
   font-weight: normal;
   font-style: normal;
   font-display: swap;

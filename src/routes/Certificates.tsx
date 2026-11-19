@@ -9,11 +9,16 @@ import Breadcrumb from "../components/Breadcrumb.tsx";
 import CardHead from "../components/CardHead.tsx";
 import CardThumb from "../components/CardThumb.tsx";
 import TabButton from "../components/TabButton.tsx";
-import { courses } from "../types/Certificates.ts";
+import {
+  courses,
+  courseTypes,
+  type CourseType,
+} from "../types/Certificates.ts";
 
 /* valor interno da aba "todos" (o texto mostrado vem do dicionário) */
-const ALL = "__all__";
-const tabs = [ALL, ...Array.from(new Set(courses.map((c) => c.type)))];
+const ALL = "__all__" as const;
+type Tab = typeof ALL | CourseType;
+const tabs: Tab[] = [ALL, ...Array.from(new Set(courses.map((c) => c.type)))];
 
 const pad = (n: number) => String(n).padStart(2, "0");
 
@@ -29,8 +34,8 @@ const dateKey = (date?: string) => {
 };
 
 export default function Certificates() {
-  const { t } = useLanguage();
-  const [tab, setTab] = useState(ALL);
+  const { t, lang } = useLanguage();
+  const [tab, setTab] = useState<Tab>(ALL);
   const [order, setOrder] = useState<Order>("newest");
 
   const visible = tab === ALL ? courses : courses.filter((c) => c.type === tab);
@@ -63,7 +68,7 @@ export default function Certificates() {
               pressed={tab === name}
               onClick={() => setTab(name)}
             >
-              {name === ALL ? t.common.all : name}
+              {name === ALL ? t.common.all : courseTypes[name][lang]}
             </TabButton>
           ))}
 
@@ -92,10 +97,13 @@ export default function Certificates() {
         <ul className="mx-auto mt-7 grid w-[min(100%,1180px)] grid-cols-1 gap-4 min-[700px]:grid-cols-2 min-[1100px]:grid-cols-3 min-[1100px]:gap-[1.1rem]">
           {sorted.map((course) => (
             // cartão só de exibição: não abre e não leva a lugar nenhum
-            <li key={course.title} className="flex flex-col border border-line">
+            <li
+              key={course.title.pt}
+              className="flex flex-col border border-line"
+            >
               <CardHead
-                label={course.type}
-                title={course.title}
+                label={courseTypes[course.type][lang]}
+                title={course.title[lang]}
                 thumb={
                   <CardThumb hue={course.hue} image={course.image}>
                     {!course.image && <Award size={44} strokeWidth={1.5} />}
@@ -105,7 +113,7 @@ export default function Certificates() {
                   <>
                     {course.issuer && (
                       <span className="text-[0.7rem] tracking-[0.05em] uppercase">
-                        {course.issuer}
+                        {course.issuer[lang]}
                       </span>
                     )}
                     {/* a data fica sempre à direita, mesmo sem emissor */}

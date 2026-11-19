@@ -21,7 +21,7 @@ const tabButton =
 
 export default function AboutMe() {
   const [tab, setTab] = useState<Tab>("icons");
-  const { t } = useLanguage();
+  const { t, lang } = useLanguage();
 
   const average = Math.round(
     skills.reduce((sum, skill) => sum + skill.level, 0) / skills.length,
@@ -114,14 +114,14 @@ export default function AboutMe() {
                 >
                   <ul className="m-0 grid list-none content-start gap-[1.4rem] p-5 home:p-6">
                     {skills.map(({ name, level, note }) => (
-                      <li key={name}>
+                      <li key={name.pt}>
                         <div className="flex items-baseline justify-between gap-2">
                           <span className="text-[0.72rem] font-bold tracking-[0.08em] text-hot uppercase">
-                            {name}
+                            {name[lang]}
                           </span>
                           {note && (
                             <span className="text-[0.7rem] tracking-[0.06em] text-cool uppercase">
-                              {note}
+                              {note[lang]}
                             </span>
                           )}
                         </div>
@@ -129,7 +129,7 @@ export default function AboutMe() {
                           <span
                             className="relative block h-[0.32rem] flex-1 bg-line"
                             role="progressbar"
-                            aria-label={name}
+                            aria-label={name[lang]}
                             aria-valuenow={level}
                             aria-valuemin={0}
                             aria-valuemax={100}
