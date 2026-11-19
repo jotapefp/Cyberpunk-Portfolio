@@ -38,11 +38,11 @@ export default function ThemeToggle() {
       {/* o ícone sobre o botão usa a cor do fundo; o outro usa a cor de destaque */}
       <Sun
         aria-hidden="true"
-        className="relative z-10 size-[var(--nb-icon,0.875rem)] text-main transition-colors duration-200 group-aria-checked:text-secondary motion-reduce:transition-none"
+        className="relative z-10 size-(--nb-icon,0.875rem) text-main transition-colors duration-200 group-aria-checked:text-secondary motion-reduce:transition-none"
       />
       <Moon
         aria-hidden="true"
-        className="relative z-10 size-[var(--nb-icon,0.875rem)] text-secondary transition-colors duration-200 group-aria-checked:text-main motion-reduce:transition-none"
+        className="relative z-10 size-(--nb-icon,0.875rem) text-secondary transition-colors duration-200 group-aria-checked:text-main motion-reduce:transition-none"
       />
     </button>
   );

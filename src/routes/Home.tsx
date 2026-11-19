@@ -56,13 +56,13 @@ export default function Home() {
               aria-hidden="true"
             />
 
-            <p className="m-0 max-w-72 text-[0.9rem] leading-[1.35] font-semibold tracking-[0.03em] uppercase home:max-w-[22rem] home:text-[clamp(0.72rem,0.85vw,0.95rem)]">
+            <p className="m-0 max-w-72 text-[0.9rem] leading-[1.35] font-semibold tracking-[0.03em] uppercase home:max-w-88home:text-[clamp(0.72rem,0.85vw,0.95rem)]">
               {t.home.description}
             </p>
 
             <Link
               to="/Projects"
-              className="mt-[1.4rem] bg-cta px-[2.1rem] py-[0.85rem] text-[0.85rem] font-bold tracking-[0.05em] text-white uppercase no-underline transition-colors duration-150 [clip-path:polygon(0_0,93%_0,100%_30%,100%_100%,0_100%)] hover:bg-secondary hover:text-main focus-visible:bg-secondary focus-visible:text-main focus-visible:outline-none"
+              className="mt-[1.4rem] bg-cta px-[2.1rem] py-[0.85rem] text-[0.85rem] font-bold tracking-wider text-white uppercase no-underline transition-colors duration-150 [clip-path:polygon(0_0,93%_0,100%_30%,100%_100%,0_100%)] hover:bg-secondary hover:text-main focus-visible:bg-secondary focus-visible:text-main focus-visible:outline-none"
             >
               {t.home.cta}
             </Link>
