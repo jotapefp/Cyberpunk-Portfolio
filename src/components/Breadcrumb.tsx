@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
 
-/* "Home / Página atual" no topo das páginas internas */
 export default function Breadcrumb({ current }: { current: string }) {
   return (
     <nav

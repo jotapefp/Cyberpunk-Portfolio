@@ -1,6 +1,4 @@
 import type { ReactNode } from "react";
-
-/* Aba de filtro (Projetos e Certificados). A aba ativa usa aria-pressed. */
 type Props = {
   pressed: boolean;
   onClick: () => void;

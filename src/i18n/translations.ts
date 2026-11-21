@@ -67,7 +67,6 @@ const pt = {
   },
 };
 
-// `typeof pt` obriga o inglês a ter exatamente as mesmas chaves
 const en: typeof pt = {
   common: {
     all: "All",

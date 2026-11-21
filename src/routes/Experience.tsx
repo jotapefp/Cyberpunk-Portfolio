@@ -1,7 +1,6 @@
 import { experiences } from "../types/Experiences.ts";
 import Breadcrumb from "../components/Breadcrumb.tsx";
 
-/* Idioma */
 import { useLanguage } from "../i18n/LanguageContext.tsx";
 
 type Tone = (typeof experiences)[number]["tone"];

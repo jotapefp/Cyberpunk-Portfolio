@@ -24,7 +24,7 @@
   --color-red: #ee3453;
   --color-black: #05060b;
   --color-white: #ffffff;
-  --color-cta: #ff3a52; /* botão "Ver projetos" */
+  --color-cta: #ff3a52;
 
   /* cor dos ícones */
   --color-icon: #ffffff;
@@ -33,7 +33,6 @@
   --font-navbar:
     "SD Dystopian", "Rajdhani", ui-sans-serif, system-ui, sans-serif;
 
-  /* a Home passa a ter layout de desktop a partir de 900px (use home:) */
   --breakpoint-home: 900px;
 }
 
@@ -56,7 +55,6 @@
     }
   }
 
-  /* o CursorGlitch define --a (cor) e --m (deslocamento) em cada elemento atingido */
   @keyframes glitch {
     0% {
       translate: var(--m) 0;
@@ -80,7 +78,6 @@
   }
 }
 
-/* Tokens semânticos: mudam conforme o tema (bg-main, text-secondary, border-line...) */
 @theme inline {
   --color-main: var(--main);
   --color-secondary: var(--secondary);
@@ -88,8 +85,8 @@
   --color-line: var(--line);
   --color-muted: var(--muted);
   --color-accent: var(--color-red);
-  --color-hot: var(--hot); /* vermelho de destaque (nome, barras) */
-  --color-cool: var(--cool); /* ciano de destaque (rótulos) */
+  --color-hot: var(--hot);
+  --color-cool: var(--cool);
 }
 
 /* Claro: fundo amarelo, texto preto */
@@ -102,8 +99,6 @@
   --muted: color-mix(in srgb, var(--fg) 55%, transparent);
   --hot: #c4122f;
   --cool: var(--hot);
-
-  /* recorte de cantos dos quadrados (ícones de tecnologia, GitHub, LinkedIn) */
   --cut: polygon(0 0, 76% 0, 100% 24%, 100% 100%, 24% 100%, 0 76%);
 
   /* nomes antigos, usados pelos CSS que ainda não foram migrados */
@@ -112,7 +107,6 @@
   --red: var(--color-red);
   --cyan: #00f0ff;
 
-  /* compatibilidade: o LanguageSelect (e qualquer CSS antigo) ainda lê --yh-* */
   --yh-yellow: var(--main);
   --yh-ink: var(--secondary);
   --yh-line: var(--line);
@@ -146,7 +140,6 @@
       color 0.25s ease;
   }
 
-  /* padrão de circuitos ao fundo */
   body::before {
     --circuit: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400' viewBox='0 0 400 400'%3E%3Cg fill='none' stroke='black' stroke-width='2' stroke-linejoin='round' stroke-linecap='round'%3E%3Cpath d='M0 60H70L100 90V160'/%3E%3Cpath d='M400 60H330L300 90V130'/%3E%3Cpath d='M0 300H40L70 330H96'/%3E%3Cpath d='M400 300H350L320 270V220'/%3E%3Cpath d='M240 0V50L210 80V130'/%3E%3Cpath d='M240 400V360L270 330V270'/%3E%3Cpath d='M120 0V40L150 70V110'/%3E%3Cpath d='M120 400V360L150 330V290'/%3E%3Cpath d='M184 214L216 202M184 224L216 212M184 234L216 222M184 244L216 232M184 254L216 242'/%3E%3C/g%3E%3Cg fill='black'%3E%3Ccircle cx='100' cy='166' r='6'/%3E%3Ccircle cx='300' cy='136' r='6'/%3E%3Ccircle cx='104' cy='330' r='6'/%3E%3Ccircle cx='320' cy='214' r='6'/%3E%3Ccircle cx='210' cy='136' r='6'/%3E%3Ccircle cx='270' cy='264' r='6'/%3E%3Ccircle cx='150' cy='116' r='6'/%3E%3Ccircle cx='150' cy='284' r='6'/%3E%3C/g%3E%3C/svg%3E");
 
@@ -164,11 +157,6 @@
   }
 }
 
-/*
-  Quadrado com cantos cortados e contorno (ícones de tecnologia, GitHub, LinkedIn).
-  Uso: <li className="cut-box ...">. O tamanho vem das classes de quem usa.
-  ::before = contorno, ::after = preenchimento (clip-path não corta borda normal).
-*/
 @utility cut-box {
   position: relative;
   isolation: isolate;
@@ -206,10 +194,6 @@
   }
 }
 
-/*
-  Painel com um canto cortado e contorno de 1px (cartão da página Sobre mim).
-  Uso: <section className="cut-panel ...">
-*/
 @utility cut-panel {
   position: relative;
   isolation: isolate;
@@ -232,7 +216,6 @@
     background: var(--main);
   }
 
-  /* mobile (abaixo do breakpoint home, 900px): card reto, sem o canto cortado */
   @media (width < 900px) {
     &::before,
     &::after {
@@ -241,10 +224,6 @@
   }
 }
 
-/*
-  Painel com o canto inferior direito cortado (cartão aberto da página Projetos).
-  Uso: <article className="cut-corner ...">
-*/
 @utility cut-corner {
   position: relative;
   isolation: isolate;
@@ -274,11 +253,6 @@
   }
 }
 
-/*
-  Resto do CSS antigo. Fora de @layer de propósito, para continuar vencendo o CSS deles.
-  Se `grep -rn "yh-switch" src` não achar nada, apague este bloco.
-  Quando o LanguageSelect for migrado, apague também as variáveis --yh-* acima.
-*/
 :root[data-theme="dark"] .yh-switch > span {
   color: var(--yh-cyan);
   opacity: 1;

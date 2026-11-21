@@ -23,9 +23,7 @@ function getInitialLang(): Lang {
   try {
     const saved = localStorage.getItem(STORAGE_KEY);
     if (saved === "pt" || saved === "en") return saved;
-  } catch {
-    /* localStorage indisponível: usa o padrão */
-  }
+  } catch {}
   return "pt";
 }
 
@@ -36,9 +34,7 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
     document.documentElement.lang = lang === "pt" ? "pt-BR" : "en";
     try {
       localStorage.setItem(STORAGE_KEY, lang);
-    } catch {
-      /* ignora */
-    }
+    } catch {}
   }, [lang]);
 
   const toggleLang = useCallback(

@@ -1,6 +1,5 @@
 import type { ReactNode } from "react";
 
-/* Parte de cima do cartão: texto à esquerda, quadrado à direita e rodapé embaixo */
 type Props = {
   label: string;
   title: ReactNode;

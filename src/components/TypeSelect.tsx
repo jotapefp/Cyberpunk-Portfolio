@@ -7,12 +7,11 @@ type Props<T extends string> = {
   options: Option<T>[];
   value: T;
   onChange: (value: T) => void;
-  /* nome do campo para leitores de tela (ex.: "Filtrar por tipo") */
+
   ariaLabel: string;
   className?: string;
 };
 
-/* Botão que abre uma lista para escolher uma opção (no lugar das abas, no mobile) */
 export default function TypeSelect<T extends string>({
   options,
   value,
@@ -23,7 +22,6 @@ export default function TypeSelect<T extends string>({
   const [open, setOpen] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
 
-  /* fecha ao clicar fora ou apertar Esc */
   useEffect(() => {
     if (!open) return;
     const onPointerDown = (e: PointerEvent) => {

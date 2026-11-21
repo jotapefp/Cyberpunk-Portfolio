@@ -6,7 +6,6 @@ type Theme = "light" | "dark";
 const readTheme = (): Theme =>
   document.documentElement.dataset.theme === "dark" ? "dark" : "light";
 
-/* O tamanho acompanha a navbar: usa --nb-box e --nb-icon definidos no <header> */
 export default function ThemeToggle() {
   const [theme, setTheme] = useState<Theme>(readTheme);
 
@@ -35,7 +34,6 @@ export default function ThemeToggle() {
         className="absolute inset-y-0.75 left-0.75 w-[calc(50%-3px)] rounded-xs bg-secondary transition-transform duration-200 group-aria-checked:translate-x-full motion-reduce:transition-none"
       />
 
-      {/* o ícone sobre o botão usa a cor do fundo; o outro usa a cor de destaque */}
       <Sun
         aria-hidden="true"
         className="relative z-10 size-(--nb-icon,0.875rem) text-main transition-colors duration-200 group-aria-checked:text-secondary motion-reduce:transition-none"

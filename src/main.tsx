@@ -3,8 +3,6 @@ import { createRoot } from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 import "./main.css";
-
-/* Idioma */
 import { LanguageProvider } from "./i18n/LanguageContext.tsx";
 
 /* Pages */

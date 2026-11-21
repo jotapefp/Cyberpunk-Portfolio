@@ -11,7 +11,7 @@ export type Item = {
   image?: string;
 };
 
-/* o conteúdo depende do idioma, por isso agora é uma função */
+
 export const getContent = (lang: Lang): Record<Kind, Item[]> => ({
   project: projects.map((p) => ({
     title: p.title,

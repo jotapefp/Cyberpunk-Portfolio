@@ -1,15 +1,11 @@
 import { Fragment } from "react";
 import { Link } from "react-router-dom";
 
-/* Idioma */
 import { useLanguage } from "../i18n/LanguageContext.tsx";
-
-/* Components */
 import InfoProject from "../components/InfoProject.tsx";
 
 const stack = ["React", "TS", "JS", "CSS", "HTML"];
 
-/* afastamento da moldura: 12px no mobile, cresce a partir de 900px */
 const inset =
   "inset-3 home:inset-x-[clamp(12px,2vw,32px)] home:inset-y-[clamp(12px,2.2vh,24px)]";
 
@@ -18,7 +14,6 @@ export default function Home() {
 
   return (
     <section className="relative min-h-[max(100dvh,620px)] overflow-hidden bg-main text-secondary transition-colors duration-250">
-      {/* camadas: linhas < moldura < personagem < conteúdo */}
       <span
         className="absolute inset-x-0 top-[32%] z-0 h-px bg-fg/12 dark:bg-fg/7"
         aria-hidden="true"
@@ -67,7 +62,6 @@ export default function Home() {
               {t.home.cta}
             </Link>
 
-            {/* mobile: em coluna (em pé), à esquerda da imagem; desktop: em linha */}
             <ul
               className="mt-auto flex list-none flex-col gap-1.5 p-0 pt-4 home:flex-row home:flex-wrap home:gap-[clamp(0.4rem,0.8vw,0.7rem)] home:pt-0"
               aria-label={t.home.stackLabel}

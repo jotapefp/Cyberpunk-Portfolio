@@ -2,10 +2,7 @@ import { useEffect, useState, type CSSProperties } from "react";
 import { flushSync } from "react-dom";
 import { ArrowRight } from "lucide-react";
 
-/* Idioma */
 import { useLanguage } from "../i18n/LanguageContext.tsx";
-
-/* Components */
 import Breadcrumb from "../components/Breadcrumb.tsx";
 import CardHead from "../components/CardHead.tsx";
 import CardThumb from "../components/CardThumb.tsx";
@@ -13,13 +10,11 @@ import TabButton from "../components/TabButton.tsx";
 import TypeSelect from "../components/TypeSelect.tsx";
 import { projects } from "../types/Projects.ts";
 
-/* valor interno da aba "todos" (o texto mostrado vem do dicionário) */
 const ALL = "__all__";
 const tabs = [ALL, ...Array.from(new Set(projects.flatMap((p) => p.tags)))];
 
 const pad = (n: number) => String(n).padStart(2, "0");
 
-/* Link com seta. Fica acima do botão que cobre o cartão (z-1). */
 function ProjectLink({
   href,
   text,
@@ -102,7 +97,6 @@ export default function Projects() {
         </div>
 
         <div className="mt-3 flex flex-wrap items-center gap-x-8 border-b border-line max-[699px]:pb-3">
-          {/* celular: um botão que abre a lista de tecnologias */}
           <TypeSelect
             className="min-[700px]:hidden"
             ariaLabel={t.projects.typeLabel}
@@ -114,7 +108,6 @@ export default function Projects() {
             }))}
           />
 
-          {/* telas maiores: abas com todas as tecnologias */}
           <div className="hidden min-[700px]:contents">
             {tabs.map((name) => (
               <TabButton
@@ -148,7 +141,6 @@ export default function Projects() {
               <article
                 key={project.title}
                 data-featured={isOpen || undefined}
-                // --vt anima a troca de lugar ao abrir e fechar
                 style={{ "--vt": `pj-${index}` } as CSSProperties}
                 className={`group relative flex flex-col text-fg [view-transition-name:var(--vt,none)] ${
                   isOpen
@@ -162,7 +154,6 @@ export default function Projects() {
                     isOpen ? "flex-none border-b border-secondary" : "flex-1"
                   }
                   title={
-                    // o botão cobre o cartão inteiro: clicar em qualquer parte abre ou fecha
                     <button
                       type="button"
                       aria-expanded={isOpen}
@@ -208,7 +199,7 @@ export default function Projects() {
                         )}
                       </div>
                     </div>
-                    {/* número no canto cortado */}
+
                     <span
                       className="absolute right-[0.35rem] bottom-[0.2rem] text-[0.8rem] font-semibold text-secondary"
                       aria-hidden="true"

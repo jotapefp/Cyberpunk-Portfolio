@@ -1,6 +1,5 @@
 import type { CSSProperties, ReactNode } from "react";
 
-/* Quadrado da direita do cartão: imagem (se houver) sobre um degradê da cor (hue) */
 type Props = {
   hue: number | string;
   image?: string | null;

@@ -1,14 +1,11 @@
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 
-/* Idioma */
 import { useLanguage } from "../i18n/LanguageContext.tsx";
-
-/* Components */
 import LanguageSelect from "./LanguageSelect.tsx";
 import ThemeToggle from "./ThemeToggle.tsx";
 
-/* Links da navbar (o texto de cada um vem de i18n/translations.ts) */
+/* Links da navbar */
 const navLinks = [
   { key: "about", to: "/AboutMe" },
   { key: "experience", to: "/Experience" },
@@ -20,13 +17,6 @@ const GITHUB = "https://github.com/jotapefp";
 const LINKEDIN =
   "https://www.linkedin.com/in/joao-paulo-pinheiro-ferraz-de-arruda";
 
-/*
-  Tamanhos da navbar (mexa aqui para aumentar ou diminuir):
-  --nb-box  = quadrados do GitHub e do LinkedIn (o botão de tema usa o mesmo valor)
-  --nb-icon = desenho dentro dos quadrados e do botão de tema
-  --nb-gx/gy = afastamento das bordas da tela (o mesmo da moldura da Home)
-  --nb-pad-y = respiro acima e abaixo do conteúdo
-*/
 const header =
   "font-navbar relative mx-(--nb-gx) mt-(--nb-gy) flex items-center justify-between border-b border-line px-[0.85rem] pt-(--nb-pad-y) pb-[calc(var(--nb-gy)_+_var(--nb-pad-y))] text-secondary transition-colors duration-250 " +
   "[--nb-gx:12px] [--nb-gy:12px] [--nb-pad-y:0.55rem] [--nb-box:1.9rem] [--nb-icon:1rem] " +
@@ -41,7 +31,6 @@ const navDesktop =
 const navMobileOpen =
   "absolute top-full left-0 z-5 flex flex-col gap-[0.2rem] border border-secondary bg-main px-[0.9rem] py-[0.6rem]";
 
-/* fundo sólido + folga de 5px: as linhas do fundo param antes de encostar */
 const clear = "bg-main shadow-[0_0_0_5px_var(--main)]";
 
 const link = `${clear} border-y-2 border-transparent px-2 py-[0.3rem] text-[1.1rem] font-normal tracking-[0.06em] text-secondary uppercase no-underline transition-colors duration-150 hover:border-b-secondary focus-visible:border-b-secondary focus-visible:outline-none aria-[current=page]:border-b-secondary xl:py-[0.2rem] xl:text-[clamp(1rem,1.15vw,1.3rem)]`;
@@ -62,7 +51,6 @@ export default function Navbar() {
   return (
     <div className="sticky top-0 z-20 flow-root bg-main">
       <header className={header}>
-        {/* esquerda: hambúrguer (só no mobile) + HOME (só no desktop) */}
         <div className="flex items-center gap-2">
           <button
             type="button"
@@ -76,7 +64,7 @@ export default function Navbar() {
             <span className={bar} />
             <span className={bar} />
           </button>
-          {/* no mobile o HOME fica dentro do menu; aqui só aparece a partir de 1280px */}
+
           <Link
             to="/"
             className={`${clear} hidden px-2 text-xl font-normal tracking-[0.06em] no-underline xl:block xl:text-[clamp(1.15rem,1.3vw,1.5rem)] ${outline}`}
@@ -85,13 +73,11 @@ export default function Navbar() {
           </Link>
         </div>
 
-        {/* menu compacto abre pelo hambúrguer; a partir de 1280px os links ficam no centro */}
         <nav
           id="nb-nav"
           className={`${menuOpen ? navMobileOpen : "hidden"} ${navDesktop}`}
           aria-label={t.nav.menuLabel}
         >
-          {/* HOME dentro do menu (só no mobile) */}
           <Link
             to="/"
             className={`${link} xl:hidden`}

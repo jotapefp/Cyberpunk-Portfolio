@@ -1,9 +1,6 @@
 import { useState } from "react";
 
-/* Idioma */
 import { useLanguage } from "../i18n/LanguageContext.tsx";
-
-/* Components */
 import Breadcrumb from "../components/Breadcrumb.tsx";
 import { skills, icons, type Tab } from "../types/AboutMe.ts";
 
@@ -12,7 +9,6 @@ const PHOTO = "/ImageIcons/eu.png";
 
 const NAME = "João Paulo Pinheiro";
 
-/* Estilos repetidos */
 const edge =
   "absolute top-1/2 hidden h-[2.8rem] w-0.5 -translate-y-1/2 bg-cool min-[1100px]:block";
 
@@ -40,7 +36,6 @@ export default function AboutMe() {
             className="cut-panel grid grid-cols-1 home:min-h-148 home:grid-cols-[52fr_48fr] min-[1100px]:mx-auto min-[1100px]:w-[80%]"
             aria-labelledby="ab-name"
           >
-            {/* foto: preenche o quadrado; para PNG de recorte, troque object-cover por object-contain */}
             <div className="relative m-px min-h-68 overflow-hidden bg-secondary/10 home:m-[1px_0_1px_1px] home:min-h-0 dark:bg-transparent dark:bg-[linear-gradient(160deg,rgba(25,211,218,0.12),transparent_55%)]">
               <img
                 className="pointer-events-none absolute inset-0 size-full origin-bottom scale-100 object-cover object-center select-none home:scale-135"
@@ -84,7 +79,6 @@ export default function AboutMe() {
                 </button>
               </div>
 
-              {/* As duas abas ocupam a mesma célula do grid: o card sempre tem a altura da mais alta */}
               <div className="grid flex-1">
                 {/* Ferramentas */}
                 <ul

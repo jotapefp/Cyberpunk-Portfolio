@@ -12,7 +12,6 @@ const FALLBACK_TARGETS = "[data-glitch], h1, h2, h3, p, nav a, button, li";
 
 const rand = (min: number, max: number) => min + Math.random() * (max - min);
 
-/* Elementos atingidos ganham animate-glitch (veja o main.css) */
 const hit = (el: HTMLElement, intensity: number) => {
   el.classList.add("animate-glitch");
   el.style.setProperty("--a", `${(intensity * 4).toFixed(2)}px`);
@@ -188,7 +187,6 @@ export default function CursorGlitch() {
         </filter>
       </svg>
 
-      {/* lente que distorce o que está atrás do cursor; data-on liga o brilho */}
       <div
         ref={lensRef}
         aria-hidden="true"

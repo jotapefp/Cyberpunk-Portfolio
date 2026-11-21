@@ -1,22 +1,19 @@
 import { useState } from "react";
 import { ArrowDown, ArrowUp, Award } from "lucide-react";
 
-/* Idioma */
 import { useLanguage } from "../i18n/LanguageContext.tsx";
-
-/* Components */
 import Breadcrumb from "../components/Breadcrumb.tsx";
 import CardHead from "../components/CardHead.tsx";
 import CardThumb from "../components/CardThumb.tsx";
 import TabButton from "../components/TabButton.tsx";
 import TypeSelect from "../components/TypeSelect.tsx";
+
 import {
   courses,
   courseTypes,
   type CourseType,
 } from "../types/Certificates.ts";
 
-/* valor interno da aba "todos" (o texto mostrado vem do dicionário) */
 const ALL = "__all__" as const;
 type Tab = typeof ALL | CourseType;
 const tabs: Tab[] = [ALL, ...Array.from(new Set(courses.map((c) => c.type)))];
@@ -63,7 +60,6 @@ export default function Certificates() {
         </div>
 
         <div className="mt-3 flex flex-wrap items-center gap-x-8 border-b border-line max-[699px]:pb-3">
-          {/* celular: um botão que abre a lista de tipos */}
           <TypeSelect
             className="min-[700px]:hidden"
             ariaLabel={t.certificates.typeLabel}
@@ -75,7 +71,6 @@ export default function Certificates() {
             }))}
           />
 
-          {/* telas maiores: abas com todos os tipos */}
           <div className="hidden min-[700px]:contents">
             {tabs.map((name) => (
               <TabButton
@@ -88,7 +83,6 @@ export default function Certificates() {
             ))}
           </div>
 
-          {/* ordem por data, no canto direito da linha das abas */}
           <button
             type="button"
             className="ml-auto inline-flex cursor-pointer items-center gap-[0.45rem] self-center border border-line bg-transparent px-[0.8rem] py-[0.4rem] text-[clamp(0.72rem,0.8vw,0.9rem)] font-semibold tracking-[0.06em] text-secondary uppercase transition-colors duration-150 hover:border-secondary focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-secondary"
@@ -112,7 +106,6 @@ export default function Certificates() {
 
         <ul className="mx-auto mt-7 grid w-[min(100%,1180px)] grid-cols-1 gap-4 min-[700px]:grid-cols-2 min-[1100px]:grid-cols-3 min-[1100px]:gap-[1.1rem]">
           {sorted.map((course) => (
-            // cartão só de exibição: não abre e não leva a lugar nenhum
             <li
               key={course.title.pt}
               className="flex flex-col border border-line"
@@ -132,7 +125,7 @@ export default function Certificates() {
                         {course.issuer[lang]}
                       </span>
                     )}
-                    {/* a data fica sempre à direita, mesmo sem emissor */}
+
                     {course.date && (
                       <span className="ml-auto text-[0.72rem] font-semibold tracking-[0.08em] text-cool">
                         {course.date}
