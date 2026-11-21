@@ -112,7 +112,6 @@ Este é um projeto sem fins lucrativos, criado para estudo e portfólio. Cyberpu
 
 - Estrutura das páginas principal, Sobre mim, Certificados e Projetos: [Cyberpunk 2077 Website (Behance)](https://www.behance.net/gallery/96954785/Cyberpunk-2077-Website)
 - Inspiração da página de Experiência: [Pinterest](https://br.pinterest.com/pin/19914423349056871/)
-- Intro: [Cyberpunk (Pinterest)](https://br.pinterest.com/pin/396598310940631096/) e [Samurai GIF (Pinterest)](https://br.pinterest.com/pin/680465824959433205/)
 - Ícone do site: [SteamGridDB](https://www.steamgriddb.com/icon/34420)
 - Fontes: [FontSpace](https://www.fontspace.com/category/cyberpunk)
 
