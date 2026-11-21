@@ -1,8 +1,7 @@
-<div align="center">
+<img width="1672" height="941" alt="image" src="https://github.com/user-attachments/assets/b01c6e26-09a2-4e8a-88de-9ea5baaae000" />
 
-![Portfólio JOTAPE - Desenvolvedor de Software](./docs/capa.png)
 
-# 💛 Cyberpunk Portfolio | JOTAPE 💙
+# Cyberpunk Portfolio | JOTAPE 
 
 Portfólio pessoal inspirado no universo de **Cyberpunk 2077**, com intro animada, efeito de glitch no cursor, tema claro/escuro e versão em português e inglês.
 
