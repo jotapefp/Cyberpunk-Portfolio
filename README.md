@@ -1,8 +1,5 @@
 <img width="1672" height="941" alt="image" src="https://github.com/user-attachments/assets/b01c6e26-09a2-4e8a-88de-9ea5baaae000" />
 
-
-# Cyberpunk Portfolio | JOTAPE 
-
 Portfólio pessoal inspirado no universo de **Cyberpunk 2077**, com intro animada, efeito de glitch no cursor, tema claro/escuro e versão em português e inglês.
 
 [![Deploy](https://img.shields.io/badge/Acessar-Portf%C3%B3lio-fae800?style=for-the-badge&logo=vercel&logoColor=0f0f0f)](https://joao-paulo-pinheiro-portfolio.vercel.app/)
