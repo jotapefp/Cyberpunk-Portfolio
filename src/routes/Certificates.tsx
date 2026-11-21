@@ -9,6 +9,7 @@ import Breadcrumb from "../components/Breadcrumb.tsx";
 import CardHead from "../components/CardHead.tsx";
 import CardThumb from "../components/CardThumb.tsx";
 import TabButton from "../components/TabButton.tsx";
+import TypeSelect from "../components/TypeSelect.tsx";
 import {
   courses,
   courseTypes,
@@ -61,16 +62,31 @@ export default function Certificates() {
           </span>
         </div>
 
-        <div className="mt-3 flex flex-wrap gap-x-8 border-b border-line">
-          {tabs.map((name) => (
-            <TabButton
-              key={name}
-              pressed={tab === name}
-              onClick={() => setTab(name)}
-            >
-              {name === ALL ? t.common.all : courseTypes[name][lang]}
-            </TabButton>
-          ))}
+        <div className="mt-3 flex flex-wrap items-center gap-x-8 border-b border-line max-[699px]:pb-3">
+          {/* celular: um botão que abre a lista de tipos */}
+          <TypeSelect
+            className="min-[700px]:hidden"
+            ariaLabel={t.certificates.typeLabel}
+            value={tab}
+            onChange={setTab}
+            options={tabs.map((name) => ({
+              value: name,
+              label: name === ALL ? t.common.all : courseTypes[name][lang],
+            }))}
+          />
+
+          {/* telas maiores: abas com todos os tipos */}
+          <div className="hidden min-[700px]:contents">
+            {tabs.map((name) => (
+              <TabButton
+                key={name}
+                pressed={tab === name}
+                onClick={() => setTab(name)}
+              >
+                {name === ALL ? t.common.all : courseTypes[name][lang]}
+              </TabButton>
+            ))}
+          </div>
 
           {/* ordem por data, no canto direito da linha das abas */}
           <button
@@ -112,7 +128,7 @@ export default function Certificates() {
                 foot={
                   <>
                     {course.issuer && (
-                      <span className="text-[0.7rem] tracking-[0.05em] uppercase">
+                      <span className="text-[0.7rem] tracking-wider uppercase">
                         {course.issuer[lang]}
                       </span>
                     )}

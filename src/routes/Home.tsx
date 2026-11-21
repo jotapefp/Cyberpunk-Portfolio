@@ -41,7 +41,7 @@ export default function Home() {
             decoding="async"
           />
 
-          <div className="relative z-1 flex flex-col items-start home:col-start-1">
+          <div className="relative z-1 flex h-full flex-col items-start home:h-auto home:col-start-1">
             <h1 className="font-title m-0 text-[clamp(2.2rem,12vw,3.6rem)] leading-[1.12] font-medium tracking-[0.015em] uppercase home:text-[clamp(2.1rem,3.9vw,4.8rem)] home:whitespace-nowrap">
               {t.home.titleLines.map((line, i) => (
                 <Fragment key={line}>
@@ -56,25 +56,26 @@ export default function Home() {
               aria-hidden="true"
             />
 
-            <p className="m-0 max-w-72 text-[0.9rem] leading-[1.35] font-semibold tracking-[0.03em] uppercase home:max-w-88home:text-[clamp(0.72rem,0.85vw,0.95rem)]">
+            <p className="m-0 max-w-72 text-[0.9rem] leading-[1.35] font-semibold tracking-[0.03em] uppercase home:max-w-88 home:text-[clamp(0.72rem,0.85vw,0.95rem)]">
               {t.home.description}
             </p>
 
             <Link
               to="/Projects"
-              className="mt-[1.4rem] bg-cta px-[2.1rem] py-[0.85rem] text-[0.85rem] font-bold tracking-wider text-white uppercase no-underline transition-colors duration-150 [clip-path:polygon(0_0,93%_0,100%_30%,100%_100%,0_100%)] hover:bg-secondary hover:text-main focus-visible:bg-secondary focus-visible:text-main focus-visible:outline-none"
+              className="mt-4 bg-cta px-5 py-2 text-[0.7rem] font-bold tracking-wider text-white uppercase no-underline transition-colors duration-150 [clip-path:polygon(0_0,93%_0,100%_30%,100%_100%,0_100%)] hover:bg-secondary hover:text-main focus-visible:bg-secondary focus-visible:text-main focus-visible:outline-none home:mt-[1.4rem] home:px-[2.1rem] home:py-[0.85rem] home:text-[0.85rem]"
             >
               {t.home.cta}
             </Link>
 
+            {/* mobile: em coluna (em pé), à esquerda da imagem; desktop: em linha */}
             <ul
-              className="mt-auto flex list-none flex-wrap gap-[clamp(0.4rem,0.8vw,0.7rem)] p-0 pt-6 home:pt-0"
+              className="mt-auto flex list-none flex-col gap-1.5 p-0 pt-4 home:flex-row home:flex-wrap home:gap-[clamp(0.4rem,0.8vw,0.7rem)] home:pt-0"
               aria-label={t.home.stackLabel}
             >
               {stack.map((tech) => (
                 <li
                   key={tech}
-                  className="cut-box aspect-square w-[clamp(2.3rem,3.3vw,2.9rem)] text-[0.58rem] font-bold tracking-[0.03em] uppercase"
+                  className="cut-box aspect-square w-8 text-[0.5rem] font-bold tracking-[0.03em] uppercase home:w-[clamp(2.3rem,3.3vw,2.9rem)] home:text-[0.58rem]"
                 >
                   {tech}
                 </li>

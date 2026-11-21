@@ -12,6 +12,7 @@ const pt = {
     certificate: "Certificado",
   },
   nav: {
+    home: "Menu",
     about: "Sobre mim",
     experience: "Experiência",
     projects: "Projetos",
@@ -44,6 +45,7 @@ const pt = {
   },
   projects: {
     heading: "Projetos",
+    typeLabel: "Filtrar por tecnologia",
     label: "Projeto",
     viewProject: "Ver Projeto",
     counter: (shown: number, total: number) => `${shown} de ${total} projetos`,
@@ -54,6 +56,7 @@ const pt = {
   },
   certificates: {
     heading: "Certificados e Cursos",
+    typeLabel: "Filtrar por tipo",
     newest: "Mais novos",
     oldest: "Mais antigos",
     counter: (shown: number, total: number) => `${shown} de ${total} cursos`,
@@ -77,6 +80,7 @@ const en: typeof pt = {
     certificate: "Certificate",
   },
   nav: {
+    home: "Home",
     about: "About me",
     experience: "Experience",
     projects: "Projects",
@@ -109,6 +113,7 @@ const en: typeof pt = {
   },
   projects: {
     heading: "Projects",
+    typeLabel: "Filter by technology",
     label: "Project",
     viewProject: "View Project",
     counter: (shown: number, total: number) => `${shown} of ${total} projects`,
@@ -118,6 +123,7 @@ const en: typeof pt = {
   },
   certificates: {
     heading: "Certificates & Courses",
+    typeLabel: "Filter by type",
     newest: "Newest",
     oldest: "Oldest",
     counter: (shown: number, total: number) => `${shown} of ${total} courses`,

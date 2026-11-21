@@ -21,9 +21,6 @@ const tones: Record<Tone, { card: string; bar: string }> = {
   },
 };
 
-const deco =
-  "cyber-side pointer-events-none absolute inset-y-0 hidden w-[clamp(6rem,calc((100vw_-_1060px)/2),18rem)] xl:block";
-
 export default function Experience() {
   const { t, lang } = useLanguage();
 
@@ -35,9 +32,6 @@ export default function Experience() {
         <h1 className="sr-only">{t.experience.heading}</h1>
 
         <div className="relative mt-[clamp(3rem,8vh,5rem)]">
-          <div className={`${deco} left-0`} aria-hidden="true" />
-          <div className={`${deco} right-0 -scale-x-100`} aria-hidden="true" />
-
           <ol className="relative mx-auto grid w-[min(100%,980px)] gap-[clamp(2.5rem,6vh,3.5rem)] before:absolute before:inset-y-0 before:left-[0.6rem] before:w-0.5 before:bg-fg">
             {experiences.map((item) => {
               const tone = tones[item.tone];

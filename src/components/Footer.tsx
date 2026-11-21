@@ -20,7 +20,10 @@ export default function Footer() {
   return (
     <div className={wrapper}>
       <footer className={footer}>
-        <p className={text}>{t.footer.credit} &copy; 2026</p>
+        <p className={text}>
+          {t.footer.credit}
+          <br className="home:hidden" /> &copy; 2026
+        </p>
       </footer>
     </div>
   );

@@ -10,6 +10,7 @@ import Breadcrumb from "../components/Breadcrumb.tsx";
 import CardHead from "../components/CardHead.tsx";
 import CardThumb from "../components/CardThumb.tsx";
 import TabButton from "../components/TabButton.tsx";
+import TypeSelect from "../components/TypeSelect.tsx";
 import { projects } from "../types/Projects.ts";
 
 /* valor interno da aba "todos" (o texto mostrado vem do dicionário) */
@@ -63,6 +64,11 @@ export default function Projects() {
 
   const openProject = visible.find((p) => p.title === open);
 
+  const selectTab = (name: string) => {
+    setTab(name);
+    setOpen(null);
+  };
+
   const toggle = (title: string) => {
     const update = () =>
       flushSync(() => setOpen((current) => (current === title ? null : title)));
@@ -95,19 +101,31 @@ export default function Projects() {
           </span>
         </div>
 
-        <div className="mt-3 flex flex-wrap gap-x-8 border-b border-line">
-          {tabs.map((name) => (
-            <TabButton
-              key={name}
-              pressed={tab === name}
-              onClick={() => {
-                setTab(name);
-                setOpen(null);
-              }}
-            >
-              {name === ALL ? t.common.all : name}
-            </TabButton>
-          ))}
+        <div className="mt-3 flex flex-wrap items-center gap-x-8 border-b border-line max-[699px]:pb-3">
+          {/* celular: um botão que abre a lista de tecnologias */}
+          <TypeSelect
+            className="min-[700px]:hidden"
+            ariaLabel={t.projects.typeLabel}
+            value={tab}
+            onChange={selectTab}
+            options={tabs.map((name) => ({
+              value: name,
+              label: name === ALL ? t.common.all : name,
+            }))}
+          />
+
+          {/* telas maiores: abas com todas as tecnologias */}
+          <div className="hidden min-[700px]:contents">
+            {tabs.map((name) => (
+              <TabButton
+                key={name}
+                pressed={tab === name}
+                onClick={() => selectTab(name)}
+              >
+                {name === ALL ? t.common.all : name}
+              </TabButton>
+            ))}
+          </div>
         </div>
 
         <h1 className="sr-only">{t.projects.heading}</h1>
@@ -149,7 +167,7 @@ export default function Projects() {
                       type="button"
                       aria-expanded={isOpen}
                       onClick={() => toggle(project.title)}
-                      className="m-0 cursor-pointer bg-transparent p-0 text-left text-inherit underline-offset-[0.25em] [letter-spacing:inherit] [text-transform:inherit] group-hover:underline after:absolute after:inset-0 focus-visible:underline focus-visible:outline-none focus-visible:after:outline-2 focus-visible:after:outline-offset-3 focus-visible:after:outline-secondary"
+                      className="m-0 cursor-pointer bg-transparent p-0 text-left text-inherit underline-offset-[0.25em] tracking-[inherit] [text-transform:inherit] group-hover:underline after:absolute after:inset-0 focus-visible:underline focus-visible:outline-none focus-visible:after:outline-2 focus-visible:after:outline-offset-3 focus-visible:after:outline-secondary"
                     >
                       {project.title}
                     </button>
@@ -166,7 +184,7 @@ export default function Projects() {
                   foot={
                     <>
                       {project.stack && (
-                        <span className="text-[0.8rem] tracking-[0.05em] uppercase">
+                        <span className="text-[0.8rem] tracking-wider uppercase">
                           {project.stack}
                         </span>
                       )}
@@ -177,7 +195,7 @@ export default function Projects() {
 
                 {isOpen && (
                   <>
-                    <div className="flex flex-1 flex-col justify-between gap-4 px-5 pt-5 pb-7 text-[clamp(0.95rem,1.1vw,1.05rem)] leading-[1.5] text-cool">
+                    <div className="flex flex-1 flex-col justify-between gap-4 px-5 pt-5 pb-7 text-[clamp(0.95rem,1.1vw,1.05rem)] leading-normal text-cool">
                       <p className="m-0">{project.description[lang]}</p>
                       <div className="flex flex-wrap gap-x-6 gap-y-3">
                         {github}

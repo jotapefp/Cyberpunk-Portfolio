@@ -16,7 +16,6 @@ const navLinks = [
   { key: "certificates", to: "/Certificates" },
 ] as const;
 
-const BRAND = "HOME";
 const GITHUB = "https://github.com/jotapefp";
 const LINKEDIN =
   "https://www.linkedin.com/in/joao-paulo-pinheiro-ferraz-de-arruda";
@@ -40,7 +39,7 @@ const outline =
 const navDesktop =
   "xl:static xl:flex xl:flex-row xl:gap-[clamp(0.9rem,1.8vw,2.2rem)] xl:border-0 xl:bg-transparent xl:p-0";
 const navMobileOpen =
-  "absolute top-full right-0 z-5 flex flex-col gap-[0.2rem] border border-secondary bg-main px-[0.9rem] py-[0.6rem]";
+  "absolute top-full left-0 z-5 flex flex-col gap-[0.2rem] border border-secondary bg-main px-[0.9rem] py-[0.6rem]";
 
 /* fundo sólido + folga de 5px: as linhas do fundo param antes de encostar */
 const clear = "bg-main shadow-[0_0_0_5px_var(--main)]";
@@ -63,12 +62,28 @@ export default function Navbar() {
   return (
     <div className="sticky top-0 z-20 flow-root bg-main">
       <header className={header}>
-        <Link
-          to="/"
-          className={`${clear} px-2 text-xl font-normal tracking-[0.06em] no-underline xl:text-[clamp(1.15rem,1.3vw,1.5rem)] ${outline}`}
-        >
-          {BRAND}
-        </Link>
+        {/* esquerda: hambúrguer (só no mobile) + HOME (só no desktop) */}
+        <div className="flex items-center gap-2">
+          <button
+            type="button"
+            aria-label={t.nav.openMenu}
+            aria-expanded={menuOpen}
+            aria-controls="nb-nav"
+            onClick={() => setMenuOpen((open) => !open)}
+            className={`grid w-[calc(var(--nb-box)*1.05)] cursor-pointer gap-1.25 border-0 bg-transparent py-[0.3rem] xl:hidden ${outline}`}
+          >
+            <span className={bar} />
+            <span className={bar} />
+            <span className={bar} />
+          </button>
+          {/* no mobile o HOME fica dentro do menu; aqui só aparece a partir de 1280px */}
+          <Link
+            to="/"
+            className={`${clear} hidden px-2 text-xl font-normal tracking-[0.06em] no-underline xl:block xl:text-[clamp(1.15rem,1.3vw,1.5rem)] ${outline}`}
+          >
+            {t.nav.home}
+          </Link>
+        </div>
 
         {/* menu compacto abre pelo hambúrguer; a partir de 1280px os links ficam no centro */}
         <nav
@@ -76,6 +91,16 @@ export default function Navbar() {
           className={`${menuOpen ? navMobileOpen : "hidden"} ${navDesktop}`}
           aria-label={t.nav.menuLabel}
         >
+          {/* HOME dentro do menu (só no mobile) */}
+          <Link
+            to="/"
+            className={`${link} xl:hidden`}
+            aria-current={pathname === "/" ? "page" : undefined}
+            onClick={() => setMenuOpen(false)}
+          >
+            {t.nav.home}
+          </Link>
+
           {navLinks.map(({ key, to }) => (
             <Link
               key={key}
@@ -120,18 +145,6 @@ export default function Navbar() {
               <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
             </svg>
           </a>
-          <button
-            type="button"
-            aria-label={t.nav.openMenu}
-            aria-expanded={menuOpen}
-            aria-controls="nb-nav"
-            onClick={() => setMenuOpen((open) => !open)}
-            className={`ml-[0.4rem] grid w-[calc(var(--nb-box)*1.05)] cursor-pointer gap-1.25 border-0 bg-transparent py-[0.3rem] xl:hidden ${outline}`}
-          >
-            <span className={bar} />
-            <span className={bar} />
-            <span className={bar} />
-          </button>
         </div>
       </header>
     </div>
