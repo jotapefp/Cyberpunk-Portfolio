@@ -102,7 +102,7 @@ export default function Navbar() {
 
         <div className="flex items-center gap-2 xl:justify-self-end">
           <div
-            className={`${clear} flex max-[519px]:hidden xl:mr-[clamp(0.5rem,calc(8.6vw-80px),7rem)]`}
+            className={`${clear} flex xl:mr-[clamp(0.5rem,calc(8.6vw-80px),7rem)]`}
           >
             <LanguageSelect />
           </div>
